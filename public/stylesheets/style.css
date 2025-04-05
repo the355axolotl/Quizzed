@@ -1,8 +1,114 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* FONTS (apparently have to be placed at the very top to work) */
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Pixelify+Sans:wght@400..700&display=swap');
+
+.pixelify-sans {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
-a {
-  color: #00B7FF;
+
+/* MISC */
+*{ margin: 0; padding: 0; }
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+
+/* ANIMATIONS */
+@keyframes move-twinkle-back {
+  from {background-position: 0 0;}
+  to { background-position: -10000px 5000px;}
+}
+
+
+/* STAR BACKGROUND CSS */
+.twinkling, .stars, .stars > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.twinkling {
+  background: transparent url(../images/twinkling.png) repeat top center;
+  background-size: 5%; 
+  z-index: -1;
+
+  animation: move-twinkle-back 200s linear infinite;
+}
+
+.stars {
+  background: #000 url(../images/stars.png) repeat top center;
+  z-index: -2;
+  transform: scale(1.5, 1.5);
+}
+.stars:first-child{
+  position: absolute;
+  background: #000 url(../images/stars2.png) repeat top center;
+  transform: scale(.85, .85);
+  z-index: -3;
+}
+.stars:last-child{
+  position: absolute;
+  background: #000 url(../images/stars3.png) repeat top center;
+  transform: scale(1.2, 1.2);
+  z-index: -4;
+}
+
+
+/* MAIN BODY */
+.main-body {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+header {
+  width: 100%;
+  height: 65px;
+  padding: 0 15px 0 10px;
+  box-sizing: border-box;
+  position: fixed;
+
+  /* background-color: rgba(255, 255, 255, 0.4); */
+  border-bottom: #FFF 4px dashed;
+
+  font-size: 1.25em;
+  color: white;
+
+  display: flex;
+}
+
+header > * {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+.header-left { justify-content: flex-start; flex: .5;}
+.header-right { justify-content: flex-end; gap: 40px; flex: 1;}
+
+#credits, #instructions {
+  background-color: transparent;
+  border: transparent;
+
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 1.25em;
+  color: rgb(255, 255, 255);;
+
+}
+
+#credits:hover, #instructions:hover {
+  background-color: #0000ff;
 }
