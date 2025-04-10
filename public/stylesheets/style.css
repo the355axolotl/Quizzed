@@ -1,5 +1,9 @@
 /* FONTS (apparently have to be placed at the very top to work) */
 @import url('https://fonts.googleapis.com/css2?family=Patua+One&family=Pixelify+Sans:wght@400..700&display=swap');
+@font-face {
+  font-family: "Press Start";
+  src: url(../images/PressStart2P-vaV7.ttf);
+}
 
 .pixelify-sans {
   font-family: "Pixelify Sans", sans-serif;
@@ -12,10 +16,10 @@
 /* MISC */
 *{ margin: 0; padding: 0; }
 
-body {
+body, .background {
   width: 100%;
   height: 100%;
-  background-color: #000000;
+  background-color: black;
   overflow: hidden;
 }
 
@@ -25,6 +29,35 @@ body {
   from {background-position: 0 0;}
   to { background-position: -10000px 5000px;}
 }
+
+@keyframes drop {
+  0% {
+      transform: translateY(-200px);
+      opacity: 0;
+  }
+  50% {
+      transform: translateY(0px);
+      opacity: 1;
+  }
+  65% {
+      transform: translateY(-17px);
+      opacity: 1;
+  }
+  75% {
+      transform: translateY(-22px);
+      opacity: 1;
+  }
+  100% {
+      transform: translateY(0px);
+      opacity: 1;
+  }
+}
+
+@keyframes delay-btn-show {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
 
 
 /* STAR BACKGROUND CSS */
@@ -78,7 +111,7 @@ header {
   height: 65px;
   padding: 0 15px 0 10px;
   box-sizing: border-box;
-  position: fixed;
+  position: sticky;
 
   /* background-color: rgba(255, 255, 255, 0.4); */
   border-bottom: #FFF 4px dashed;
@@ -105,10 +138,85 @@ header > * {
 
   font-family: "Pixelify Sans", sans-serif;
   font-size: 1.25em;
-  color: rgb(255, 255, 255);;
+  color: rgb(255, 255, 255);
 
 }
 
 #credits:hover, #instructions:hover {
   background-color: #0000ff;
+}
+
+
+/* START */
+.home-frame {
+  width: 100%;
+  height: calc(100vh - 65px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title-wrapper {
+  width: 50%;
+  min-width: 400px;
+  height: 15%;
+  min-height: 125px;
+}
+
+.title-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  font-size: 4em;
+  gap: 5px;
+
+  text-shadow: 
+    #03ffff 1px 3px,
+    #ff00ff -1px -3px;
+}
+
+.title-main > * { opacity: 0; }
+
+.q { animation: drop .3s ease-in forwards; }
+.u { animation: drop .3s ease-in forwards .1s; }
+.i { animation: drop .3s ease-in forwards .2s; }
+.z { animation: drop .3s ease-in forwards .3s; }
+.z2 { animation: drop .3s ease-in forwards .4s; }
+.d { animation: drop .3s ease-in forwards .5s; }
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn {
+  background-color: #0000ff;
+  border: 5px solid white;
+  color: white;
+  font-size: 1.5em;
+  padding: 10px;
+
+  opacity: 0;
+  animation: delay-btn-show .025s ease-in forwards 1s;
+}
+
+.btn:hover{
+  background-color: #ffffff;
+  color: black;
+  border: 5px solid #0000ff;
+}
+
+.trademark {
+  width: 100%;
+  height: 15px;
+
+  display: flex;
+  justify-content: end;
 }

@@ -7,20 +7,47 @@
     <title>Quizzd</title>
 </head>
 <body>
-    <div class="stars">
-        <div class="stars"></div>
-        <div class="stars"></div>
-    </div>
-    <div class="twinkling"></div>
-
     <header class="header">
         <div class="header-left">
             <img src="./images/logo.png" width="150px" height="85%">
         </div>
         <div class="header-right">
-            <button id="credits">Credits</button>
-            <button id="instructions">How to Play</button>
+            <a href="https://github.com/the355axolotl/Quizzed/tree/main" target="_blank"> <button id="credits">Credits</button></a>
         </div>
     </header>
+
+    <div class="background">
+        <div class="stars">
+            <div class="stars"></div>
+            <div class="stars"></div>
+        </div>
+        <div class="twinkling"></div>
+    </div>
+
+    <div class="home-frame pixelify-sans">
+        <div class="title-wrapper">
+            <div class="title-main" style="font-family: 'Press Start';">
+                <span class="q" style="color: red;">Q</span>
+                <span class="u" style="color: orange; font-size: .75em; margin-bottom: -35px;"><sub>U</sub></span>
+                <span class="i" style="color: yellow; font-size: .75em;">I</span>
+                <span class="z" style="color: green; font-size: .75em; margin-top: -50px;"><sup>Z</sup></span>
+                <span class="z2" style="color: blue; font-size: .75em; margin-bottom: -35px;"><sub>Z</sub></span>
+                <span class="d" style="color: #8c52ff;">D</span>
+            </div>
+        </div>
+        <div class="buttons">
+            <form action="/play">
+                <button class="btn pixelify-sans">Play Now</button>
+            </form>
+    
+            <form action="/instructions">
+                <button class="btn pixelify-sans">How To Play</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="trademark pixelify-sans">
+        <span style="color: white; margin-top: -20px;">A CS 355 Project</span>
+    </footer>
 </body>
 </html>
