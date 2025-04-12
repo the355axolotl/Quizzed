@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/play/start', function(req, res, next) {
-  res.render('./main/play', { title: 'Express' });
+  res.render('./main/play', { title: 'Quizzd' });
 });
 
 module.exports = router;
