@@ -99,13 +99,7 @@ body, .background {
 }
 
 
-/* MAIN BODY */
-.main-body {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-}
-
+/* HEADER */
 header {
   width: 100%;
   height: 65px;
@@ -147,6 +141,13 @@ header > * {
 }
 
 
+/* MAIN BODY */
+.main-body {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
 /* START */
 .home-frame {
   width: 100%;
@@ -177,6 +178,8 @@ header > * {
   text-shadow: 
     #03ffff 1px 3px,
     #ff00ff -1px -3px;
+
+  user-select: none;
 }
 
 .title-main > * { opacity: 0; }
@@ -213,15 +216,6 @@ header > * {
   color: black;
   border: 5px solid #0000ff;
 }
-
-.trademark {
-  width: 100%;
-  height: 15px;
-
-  display: flex;
-  justify-content: end;
-}
-
 
 /* INSTRUCTIONS FRAME */
 .instructions-frame {
