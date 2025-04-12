@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%-include("./header.ejs")%>
+
+    <%-include("./background.ejs")%>
+
+  <div class="home-frame pixelify-sans" id="home-frame">
+      <div class="title-wrapper">
+          <div class="title-main" style="font-family: 'Press Start';">
+              <span class="q" style="color: red;">Q</span>
+              <span class="u" style="color: orange; font-size: .75em; margin-bottom: -35px;"><sub>U</sub></span>
+              <span class="i" style="color: yellow; font-size: .75em;">I</span>
+              <span class="z" style="color: green; font-size: .75em; margin-top: -50px;"><sup>Z</sup></span>
+              <span class="z2" style="color: blue; font-size: .75em; margin-bottom: -35px;"><sub>Z</sub></span>
+              <span class="d" style="color: #8c52ff;">D</span>
+          </div>
+      </div>
+      <div class="buttons">
+          <form action="/play">
+              <button class="btn pixelify-sans" id="play-start">Play Now</button>
+          </form>
+  
+          <button class="btn pixelify-sans" id="instructions">How To Play</button>
+      </div>
+  </div>
+
+  <div class="instructions-frame pixelify-sans" id="instruction-frame-id">
+      <div class="instructions-wrapper" style="font-size: 2em;">
+          <h2>How to Play</h2>
+          <p id="instructions-text" style="text-align: center;"></p>
+          <button class="pixelify-sans" id="instructions-cancel">Return</button>
+      </div>
+  </div>
+
+  <%-include("./footer.ejs")%>
+
+  <script src="./javascripts/script.js"></script>
+  </body>
+</html>

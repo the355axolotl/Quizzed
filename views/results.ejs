@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel = 'stylesheet' href="/stylesheets/results.css">
+    <title>Results</title>
+</head>
+<body>
+    <%-include("./header.ejs")%>
+
+    <%-include("./background.ejs")%>
+    <div class="results-frame">
+        <div class="box">
+            <div class="white-text font-big">
+                <h1 class="pixelify-sans">Results</h1>
+            </div>
+            <div class="boxbg">
+                <div class="score font-big">
+                    <h1 class="pixelify-sans white-text">Score</h1>
+                    <div class="number white-text">
+                        <!-- Injection code here -->
+                         <h1 class="pixelify-sans" id="finalscore">6/10</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="white-text pixelify-sans font-big">
+                <h1>TRY AGAIN?</h1>
+            </div>
+            <div class="buttons">
+                <form action="/replay">
+                    <button class="btn pixelify-sans">Replay</button>
+                </form>
+
+                <form method="get" action="/">
+                    <button class = "btn pixelify-sans">Home</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%-include("./footer.ejs")%>
+
+</body>
+</html>
