@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quiz Question</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Question <%= questionNumber %> of <%= totalQuestions %></h1>
+      <div class="question">
+        <h3><%= question.question %></h3>
+        
+        <form action="/submit" method="POST">
+          <div class="options">
+            <% options.forEach(function(option) { %>
+              <div class="option">
+                <input type="radio" id="<%= option.key %>" name="answer" value="<%= option.key %>" required>
+                <label for="<%= option.key %>"><%= option.key %>: <%= option.value %></label>
+              </div>
+            <% }); %>
+          </div>
+          <button type="submit" class="btn">Next Question</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
