@@ -8,8 +8,30 @@
     <%-include("./header.ejs")%>
 
     <%-include("./background.ejs")%>
+
+    <div class="home-frame pixelify-sans">
+        <div class="title-wrapper">
+            <div class="title-main" style="font-family: 'Press Start';">
+                <span class="q" style="color: red;">Q</span>
+                <span class="u" style="color: orange; font-size: .75em; margin-bottom: -35px;"><sub>U</sub></span>
+                <span class="i" style="color: yellow; font-size: .75em;">I</span>
+                <span class="z" style="color: green; font-size: .75em; margin-top: -50px;"><sup>Z</sup></span>
+                <span class="z2" style="color: blue; font-size: .75em; margin-bottom: -35px;"><sub>Z</sub></span>
+                <span class="d" style="color: #8c52ff;">D</span>
+            </div>
+        </div>
+        <div class="buttons">
+            <form action="/play">
+                <button class="btn pixelify-sans">Play Now</button>
+            </form>
     
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+            <form action="/instructions">
+                <button class="btn pixelify-sans">How To Play</button>
+            </form>
+        </div>
+    </div>
+
+    <%-include("./footer.ejs")%>
+
   </body>
 </html>
