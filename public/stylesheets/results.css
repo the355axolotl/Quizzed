@@ -1,4 +1,12 @@
+/* Text Color */
+.white-text{
+    color: rgb(255, 255, 255);
+}
+.font-big{
+    font-size: 25pt;
+}
 
+/* Boxes */
 .box{
     display: flex;
     align-items: center;
@@ -15,10 +23,8 @@
     border-color: rgb(255, 255, 255) ;
 }
 
+/* may have to adjust later */
 .score{
     padding-top: 5vh;
     padding-bottom: 5vh;
-}
-.whitetext{
-    color: rgb(255, 255, 255);
 }
