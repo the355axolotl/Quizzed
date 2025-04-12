@@ -6,6 +6,18 @@
     font-size: 50pt;
 }
 
+/* Black magic height */
+.results-frame {
+    width: 100%;
+    height: calc(95vh - 65px);
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+
 /* Boxes */
 .box{
     display: flex;
@@ -23,8 +35,14 @@
     border-color: rgb(255, 255, 255) ;
 }
 
-/* may have to adjust later */
+/* may have to adjust padding later */
 .score{
-    padding-top: 5vh;
-    padding-bottom: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    padding-top: 7px;
+    padding-bottom: 7px;
+
 }
