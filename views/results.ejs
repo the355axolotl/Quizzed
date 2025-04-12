@@ -12,8 +12,24 @@
 
     <%-include("./background.ejs")%>
 
-    <div>
+    <div class="box">
+        <div class="BigWord">
+            <h1 class="pixelify-sans">Results</h1>
+        </div>
 
+        <div class="Score">
+            <!-- Injection code here -->
+        </div>
+
+        <div class="buttons">
+            <form action="/replay">
+                <button class="btn pixelify-sans">Replay</button>
+            </form>
+
+            <form action="/home">
+                <button class = "btn pixelify-sans">Home</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
