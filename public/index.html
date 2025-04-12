@@ -24,7 +24,7 @@
         <div class="twinkling"></div>
     </div>
 
-    <div class="home-frame pixelify-sans">
+    <div class="home-frame pixelify-sans" id="home-frame">
         <div class="title-wrapper">
             <div class="title-main" style="font-family: 'Press Start';">
                 <span class="q" style="color: red;">Q</span>
@@ -37,17 +37,25 @@
         </div>
         <div class="buttons">
             <form action="/play">
-                <button class="btn pixelify-sans">Play Now</button>
+                <button class="btn pixelify-sans" id="play-start">Play Now</button>
             </form>
     
-            <form action="/instructions">
-                <button class="btn pixelify-sans">How To Play</button>
-            </form>
+            <button class="btn pixelify-sans" id="instructions">How To Play</button>
+        </div>
+    </div>
+
+    <div class="instructions-frame pixelify-sans" id="instruction-frame-id">
+        <div class="instructions-wrapper" style="font-size: 2em;">
+            <h2>How to Play</h2>
+            <p id="instructions-text" style="text-align: center;"></p>
+            <button class="pixelify-sans" id="instructions-cancel">Return</button>
         </div>
     </div>
 
     <footer class="trademark pixelify-sans">
         <span style="color: white; margin-top: -20px;">A CS 355 Project</span>
     </footer>
+
+    <script src="./javascripts/script.js"></script>
 </body>
 </html>
