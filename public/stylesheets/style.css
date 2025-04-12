@@ -132,7 +132,7 @@ header > * {
 .header-left { justify-content: flex-start; flex: .5;}
 .header-right { justify-content: flex-end; gap: 40px; flex: 1;}
 
-#credits, #instructions {
+#credits{
   background-color: transparent;
   border: transparent;
 
@@ -142,7 +142,7 @@ header > * {
 
 }
 
-#credits:hover, #instructions:hover {
+#credits:hover {
   background-color: #0000ff;
 }
 
@@ -204,10 +204,11 @@ header > * {
   padding: 10px;
 
   opacity: 0;
+  visibility: hidden;
   animation: delay-btn-show .025s ease-in forwards 1s;
 }
 
-.btn:hover{
+.btn:hover, #instructions-cancel:hover{
   background-color: #ffffff;
   color: black;
   border: 5px solid #0000ff;
@@ -219,4 +220,51 @@ header > * {
 
   display: flex;
   justify-content: end;
+}
+
+
+/* INSTRUCTIONS FRAME */
+.instructions-frame {
+  width: 100%;
+  /* PLS DONT TOUCH THE FOLLOWING: */
+  visibility: hidden;
+  height: calc(100vh - 65px);
+  top: 65px;
+
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  /* opacity: .5; */
+}
+
+.instructions-wrapper {
+  width: 45%;
+  min-width: 325px;
+  height: 45%;
+  min-height: 400px;
+
+  border: #FFF 8px solid;
+  box-sizing: border-box;
+  padding: 15px;
+  gap: 15px;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#instructions-cancel {
+  width: 125px;
+  height: 55px;
+  padding: 10px;
+
+  background-color: #0000ff;
+  border: 5px solid white;
+  color: white;
+  font-size: .65em;
 }
