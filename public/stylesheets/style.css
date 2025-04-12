@@ -151,12 +151,14 @@ header > * {
 /* START */
 .home-frame {
   width: 100%;
-  height: calc(100vh - 65px);
+  height: calc(100vh - 70px);
 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  overflow: hidden;
 }
 
 .title-wrapper {
@@ -237,7 +239,7 @@ header > * {
 .instructions-wrapper {
   width: 45%;
   min-width: 325px;
-  height: 45%;
+  height: 55%;
   min-height: 400px;
 
   border: #FFF 8px solid;

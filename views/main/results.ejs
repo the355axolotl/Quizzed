@@ -9,12 +9,12 @@
 </head>
 <body>
     <%-include("../header.ejs")%>
-
     <%-include("../background.ejs")%>
+
     <div class="results-frame">
         <div class="box">
             <div class="white-text font-big">
-                <h1 class="pixelify-sans">Results</h1>
+                <h1 class="pixelify-sans" style="font-size: 4em">Results</h1>
             </div>
             <div class="boxbg">
                 <div class="score font-big">
@@ -27,20 +27,21 @@
             </div>
 
             <div class="white-text pixelify-sans font-big">
-                <h1>TRY AGAIN?</h1>
+                <h1>Try Again?</h1>
             </div>
-            <div class="buttons">
-                <form action="/replay">
-                    <button class="btn pixelify-sans">Replay</button>
-                </form>
+        </div>
 
-                <form method="get" action="/">
-                    <button class = "btn pixelify-sans">Home</button>
-                </form>
-            </div>
+        <div class="buttons">
+            <form action="/replay">
+                <button class="btn pixelify-sans">Replay</button>
+            </form>
+
+            <form method="get" action="/">
+                <button class = "btn pixelify-sans">Home</button>
+            </form>
         </div>
     </div>
     <%-include("../home/footer.ejs")%>
-
+    <script src="./javascripts/script.js"></script>
 </body>
 </html>

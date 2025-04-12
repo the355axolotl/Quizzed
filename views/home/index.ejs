@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
     <title> Quizzd </title>
   </head>
   <body>
-    <header class="header">
-        <div class="header-left">
-            <img src="./images/logo.png" width="150px" height="85%">
-        </div>
-        <div class="header-right">
-            <a href="https://github.com/the355axolotl/Quizzed/tree/main" target="_blank"> <button id="credits">Credits</button></a>
-        </div>
-    </header>
-
-    <div class="background">
-        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-        <div class="stars">
-            <div class="stars"></div>
-            <div class="stars"></div>
-        </div>
-        <div class="twinkling"></div>
-    </div>
+    <%-include("../header.ejs")%>
+    <%-include("../background.ejs")%>
     
     <div class="home-frame pixelify-sans" id="home-frame">
       <div class="title-wrapper">
@@ -46,7 +33,7 @@
   <div class="instructions-frame pixelify-sans" id="instruction-frame-id">
       <div class="instructions-wrapper" style="font-size: 2em;">
           <h2>How to Play</h2>
-          <p id="instructions-text" style="text-align: center;"></p>
+          <p id="instructions-text" style="text-align: center; font-size: .65em;"></p>
           <button class="pixelify-sans" id="instructions-cancel">Return</button>
       </div>
   </div>
