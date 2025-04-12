@@ -7,7 +7,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/results', function(req,res,next){
-  res.render('results')
+  res.render('results');
+});
+
+router.get('/replay',function(req,res,next){
+  res.render('index');
 });
 
 module.exports = router;

@@ -3,18 +3,19 @@
     color: rgb(255, 255, 255);
 }
 .font-big h1{
-    font-size: 50pt;
+    font-size: 1.5m;
 }
 
 /* Black magic height */
 .results-frame {
     width: 100%;
     height: calc(95vh - 65px);
-  
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 20px;
   }
   
 
@@ -24,6 +25,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 20px;
 }
 .boxbg{
     display: flex;
