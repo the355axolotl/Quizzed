@@ -1,0 +1,24 @@
+
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.boxbg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: solid;
+    padding: 5vh;
+    border-color: rgb(255, 255, 255) ;
+}
+
+.score{
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+.whitetext{
+    color: rgb(255, 255, 255);
+}

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel = 'stylesheet' href="/stylesheets/results.css">
     <title>Results</title>
 </head>
 <body>
@@ -13,22 +14,25 @@
     <%-include("./background.ejs")%>
 
     <div class="box">
-        <div class="BigWord">
-            <h1 class="pixelify-sans">Results</h1>
-        </div>
+        <div class="boxbg">
+            <div class="whitetext">
+                <h1 class="pixelify-sans">Results</h1>
+            </div>
 
-        <div class="Score">
-            <!-- Injection code here -->
-        </div>
+            <div class="score whitetext">
+                <h1 class="pixelify-sans">Score</h1>
+                <!-- Injection code here -->
+            </div>
 
-        <div class="buttons">
-            <form action="/replay">
-                <button class="btn pixelify-sans">Replay</button>
-            </form>
+            <div class="buttons">
+                <form action="/replay">
+                    <button class="btn pixelify-sans">Replay</button>
+                </form>
 
-            <form action="/home">
-                <button class = "btn pixelify-sans">Home</button>
-            </form>
+                <form action="/home">
+                    <button class = "btn pixelify-sans">Home</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
