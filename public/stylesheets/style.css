@@ -13,6 +13,13 @@
 }
 
 
+
+/* ENUMS */
+.no-show { visibility: hidden; }
+.show { visibility: visible; }
+
+
+
 /* MISC */
 *{ margin: 0; padding: 0; }
 
@@ -51,11 +58,6 @@ body, .background {
       transform: translateY(0px);
       opacity: 1;
   }
-}
-
-@keyframes delay-btn-show {
-  from {opacity: 0;}
-  to {opacity: 1;}
 }
 
 
@@ -99,6 +101,7 @@ body, .background {
 }
 
 
+
 /* HEADER */
 header {
   width: 100%;
@@ -126,7 +129,7 @@ header > * {
 .header-left { justify-content: flex-start; flex: .5;}
 .header-right { justify-content: flex-end; gap: 40px; flex: 1;}
 
-#credits{
+#credits, #settings{
   background-color: transparent;
   border: transparent;
 
@@ -136,9 +139,10 @@ header > * {
 
 }
 
-#credits:hover {
+#credits:hover, #settings:hover {
   background-color: #0000ff;
 }
+
 
 
 /* MAIN BODY */
@@ -147,6 +151,8 @@ header > * {
   height: 100%;
   position: fixed;
 }
+
+
 
 /* START */
 .home-frame {
@@ -193,13 +199,14 @@ header > * {
 .z2 { animation: drop .3s ease-in forwards .4s; }
 .d { animation: drop .3s ease-in forwards .5s; }
 
-.buttons {
+#home-buttons, .buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 15px;
 }
+.buttons {visibility: hidden;}
 
 .btn {
   background-color: #0000ff;
@@ -207,23 +214,20 @@ header > * {
   color: white;
   font-size: 1.5em;
   padding: 10px;
-
-  opacity: 0;
-  visibility: hidden;
-  animation: delay-btn-show .025s ease-in forwards 1s;
 }
 
-.btn:hover, #instructions-cancel:hover{
+.btn:hover, #instructions-cancel:hover, #settings-cancel:hover {
   background-color: #ffffff;
   color: black;
   border: 5px solid #0000ff;
 }
 
-/* INSTRUCTIONS FRAME */
-.instructions-frame {
+
+
+/* INSTRUCTIONS/SETTINGS FRAME */
+.instructions-frame, #settings-frame-id {
   width: 100%;
   /* PLS DONT TOUCH THE FOLLOWING: */
-  visibility: hidden;
   height: calc(100vh - 65px);
   top: 65px;
 
@@ -236,7 +240,7 @@ header > * {
   /* opacity: .5; */
 }
 
-.instructions-wrapper {
+.instructions-wrapper, .settings-wrapper {
   width: 45%;
   min-width: 325px;
   height: 55%;
@@ -254,7 +258,7 @@ header > * {
   flex-direction: column;
 }
 
-#instructions-cancel {
+#instructions-cancel, #settings-cancel {
   width: 125px;
   height: 55px;
   padding: 10px;
@@ -263,4 +267,31 @@ header > * {
   border: 5px solid white;
   color: white;
   font-size: .65em;
+}
+
+
+
+/* SETTINGS FRAME */
+.var-questions, .var-difficulty {
+  width: 100%;
+  height: 15%;
+  min-height: 50px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#req-num {
+  width: 100%;
+  flex: .25;
+  
+  background-color: transparent;
+  color: #ffffff;
+  border: transparent;
+  border-bottom: #FFF 5px solid;
+
+  font-family: 'Press Start';
+  font-size: 1em;
+  text-align: center;
 }
