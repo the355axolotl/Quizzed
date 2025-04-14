@@ -5,8 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var quizRouter = require('./routes/quiz');
+var usersRouter = require('./routes/users');
+var questionsRouter = require('./routes/questions');
 
+var session = require('express-session');
 var app = express();
 
 // view engine setup
@@ -17,8 +19,17 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static("public")); 
+app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use(session({
+  secret: 'quizzed-app-secret', 
+  resave: false, // Doesn't save the session if unmodified
+  saveUninitialized: true // Doesn't save the session unless something is stored 
+}))
+
+// Routes
+app.use('/play', questionsRouter);
 app.use('/', indexRouter);
 app.use('/quiz', quizRouter);
 
