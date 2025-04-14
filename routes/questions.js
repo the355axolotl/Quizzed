@@ -15,12 +15,13 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', (req, res) => {
-    const numOfQuestions = req.body["questions"];
+    const numOfQuestions = parseInt(req.body["questions"]);
 
     // Current user session
     req.session.questions = getRandomQuestions();
     req.session.currentQuestion = 0;
     req.session.score = 0;
+    req.session.totalQuestions = numOfQuestions;
 
     const question = req.session.questions[0];
     const choices = getOptionsForQuestion(question);
@@ -29,7 +30,7 @@ router.post('/', (req, res) => {
         question: question,
         options: choices,
         questionNumber: 1,
-        totalQuestions: req.session.questions.length,
+        totalQuestions: req.session.totalQuestions
     });
 });
 
