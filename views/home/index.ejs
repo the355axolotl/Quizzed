@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
+    <title> Quizzd </title>
+    <link rel="icon" type="image/png" href="/public/images/icon.png">
+  </head>
+  <body>
+
+    <%-include("../header.ejs")%>
+    <%-include("../background.ejs")%>
+    
+    <div class="home-frame pixelify-sans show" id="home-frame">
+      <div class="title-wrapper">
+          <div class="title-main" style="font-family: 'Press Start';">
+              <span class="q" style="color: red;">Q</span>
+              <span class="u" style="color: orange; font-size: .75em; margin-bottom: -35px;"><sub>U</sub></span>
+              <span class="i" style="color: yellow; font-size: .75em;">I</span>
+              <span class="z" style="color: green; font-size: .75em; margin-top: -50px;"><sup>Z</sup></span>
+              <span class="z2" style="color: blue; font-size: .75em; margin-bottom: -35px;"><sub>Z</sub></span>
+              <span class="d" style="color: #8c52ff;">D</span>
+          </div>
+      </div>
+      <div class="no-show" id="home-buttons">
+          <form id="form-start" method="post" action="/play">
+              <button type="submit" class="btn pixelify-sans" id="play-start">Play Now</button>
+          </form>
+  
+          <button class="btn pixelify-sans" id="instructions">How To Play</button>
+      </div>
+  </div>
+
+  <div class="instructions-frame pixelify-sans no-show" id="instruction-frame-id">
+      <div class="instructions-wrapper" style="font-size: 2em;">
+          <h2>How to Play</h2>
+          <p id="instructions-text" style="text-align: center; font-size: .65em;"></p>
+          <button class="pixelify-sans" id="instructions-cancel">Return</button>
+      </div>
+  </div>
+
+  <div class="settings-frame pixelify-sans no-show" id="settings-frame-id">
+    <div class="settings-wrapper" style="font-size: 2em; gap: 100px">
+        <h2>Settings</h2>
+        <div class="var-questions">
+            <span style="flex: .75;">Number of questions:</span>
+            <input id="req-num"
+                form="form-start"
+                name="questions" 
+                min="10"max="50" 
+                value="10" 
+                onblur="imposeMinMax(this)">
+            </input>
+        </div>
+        <!-- <div class="var-difficulty">
+            <span style="flex: .3;">Difficulty</span>
+            <div style="flex: .7; justify-content: center;">
+
+            </div>
+        </div> -->
+        <button class="pixelify-sans" id="settings-cancel">Return</button>
+    </div>
+</div>
+
+  <%-include("./footer.ejs")%>
+  <script src="./javascripts/script.js"></script>
+  </body>
+</html>
