@@ -25,11 +25,11 @@ router.post('/', (req, res) => {
     const question = req.session.questions[0];
     const choices = getOptionsForQuestion(question);
 
-    res.render('', {
+    res.render('./quiz', {
         question: question,
-        options: options,
+        options: choices,
         questionNumber: 1,
-        totalQuestions: req.session.questions.length
+        totalQuestions: req.session.questions.length,
     });
 });
 
@@ -50,9 +50,9 @@ function loadQuestions() {
     }
 }
 
-function getRandomQuestions(count = numOfQuestions) {
+function getRandomQuestions(num) {
     const shuffled = [...questionsData].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count)
+    return shuffled.slice(0, num)
 }
 
 function checkAnswer(questionIndex, userAnswer, questions) {
