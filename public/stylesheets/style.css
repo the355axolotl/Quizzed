@@ -283,9 +283,9 @@ header > * {
 }
 
 #req-num {
-  width: 100%;
   flex: .25;
-  
+
+  width: 100%;
   background-color: transparent;
   color: #ffffff;
   border: transparent;

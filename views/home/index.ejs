@@ -24,9 +24,9 @@
           </div>
       </div>
       <div class="no-show" id="home-buttons">
-          <a href="/play/start">
-              <button class="btn pixelify-sans" id="play-start">Play Now</button>
-          <a>
+          <form id="form-start" method="post" action="/play">
+              <button type="submit" class="btn pixelify-sans" id="play-start">Play Now</button>
+          </form>
   
           <button class="btn pixelify-sans" id="instructions">How To Play</button>
       </div>
@@ -45,12 +45,13 @@
         <h2>Settings</h2>
         <div class="var-questions">
             <span style="flex: .75;">Number of questions:</span>
-            <input 
-                id="req-num" 
-                name="num_questions" 
+            <input id="req-num"
+                form="form-start"
+                name="questions" 
                 min="10"max="50" 
                 value="10" 
-                onblur="imposeMinMax(this)"></input>
+                onblur="imposeMinMax(this)">
+            </input>
         </div>
         <!-- <div class="var-difficulty">
             <span style="flex: .3;">Difficulty</span>

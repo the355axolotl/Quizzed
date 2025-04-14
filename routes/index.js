@@ -10,8 +10,8 @@ router.get('/results', function(req,res,next){
   res.render('./main/results');
 });
 
-router.get('/replay',function(req,res,next){
-  res.render('index');
+router.post('/play', (req,res) => {
+  res.render('./main/play');
 });
 
 module.exports = router;
