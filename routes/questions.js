@@ -34,6 +34,20 @@ router.post('/', (req, res) => {
     });
 });
 
+/* router.post('/next', (req, res) => {
+    req.session.questions = getRandomQuestions();
+    const question = req.session.questions[0];
+    const choices = getOptionsForQuestion(question);
+
+    res.render('./quiz', {
+        question: question,
+        options: choices,
+        questionNumber: 2,
+        totalQuestions: req.session.totalQuestions
+    });
+});
+
+ */
 /* POST answer submission */
 router.post('/submit', function(req,res) {
     if (!req.session.questions || req.session.currentQuestion >= req.session.questions.length) {

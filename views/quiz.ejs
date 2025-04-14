@@ -10,7 +10,9 @@
       <div class="question">
         <h3><%= question.question %></h3>
         
-        <form action="/" method="POST">
+        <!-- /play/next for the router in questions.js -->
+        <form action="/play/" method="POST">
+          <input name="totalQuestions" value="<%= totalQuestions %>" hidden readonly>
           <div class="options">
             <% options.forEach(function(option) { %>
               <div class="option">
