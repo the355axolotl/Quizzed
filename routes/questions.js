@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
+/* GET home page.... */
 router.get('/', function(req, res, next) {
     // Any previous session that's on the homepage will now be resetted
     req.session.questions = null;
