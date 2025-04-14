@@ -13,7 +13,8 @@ router.post('/', (req, res) => {
     req.session.currentQuestion = 0;
     req.session.score = 0;
 
-
+    const question = req.session.questions[0];
+    const choices = getOptionsForQuestion(question);
 });
 
 function loadQuestions() {
