@@ -7,11 +7,11 @@
   <body>
     <div class="container">
       <h1>Question <%= questionNumber %> of <%= totalQuestions %></h1>
-      <div class="question">
+      <div class="question" id = question>
         <h3><%= question.question %></h3>
         
         <!-- /play/next for the router in questions.js -->
-        <form action="/play/" method="POST">
+        <form action="/play/next" method="POST">
           <input name="totalQuestions" value="<%= totalQuestions %>" hidden readonly>
           <div class="options">
             <% options.forEach(function(option) { %>

@@ -34,20 +34,22 @@ router.post('/', (req, res) => {
     });
 });
 
-/* router.post('/next', (req, res) => {
-    req.session.questions = getRandomQuestions();
-    const question = req.session.questions[0];
+router.post('/next', (req, res) => {
+    req.session.currentQuestion += 1;
+    let counter = req.session.currentQuestion
+    const question = req.session.questions[counter];
     const choices = getOptionsForQuestion(question);
-
+   
+    console.log(req.session.currentQuestion);
     res.render('./quiz', {
         question: question,
         options: choices,
-        questionNumber: 2,
+        questionNumber: counter+1,
         totalQuestions: req.session.totalQuestions
     });
 });
 
- */
+
 /* POST answer submission */
 router.post('/submit', function(req,res) {
     if (!req.session.questions || req.session.currentQuestion >= req.session.questions.length) {
