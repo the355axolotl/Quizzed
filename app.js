@@ -21,7 +21,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/play', questionsRouter);
 
 app.use(session({
   secret: 'quizzed-app-secret', 
@@ -29,6 +28,8 @@ app.use(session({
   saveUninitialized: true // Doesn't save the session unless something is stored 
 }))
 
+// Routes
+app.use('/play', questionsRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
