@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const router = express.Router();
 
 function loadQuestions() {
     try {
@@ -11,7 +12,8 @@ function loadQuestions() {
     }
 }
 
-function getRandomQuestions(count = 10) {
+function getRandomQuestions() {
+    
     const shuffled = [...questionsData].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count)
 }
@@ -33,4 +35,6 @@ function getOptionsForQuestion(question) {
 }
 
 const questionsData = loadQuestions();
+
+module.exports = router;
 
