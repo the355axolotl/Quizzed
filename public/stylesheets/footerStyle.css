@@ -1,0 +1,12 @@
+/* FOOTER */
+.trademark {
+    width: 100%;
+    height: 15px;
+    box-sizing: border-box;
+    padding-right: 5px;
+  
+    display: flex;
+    justify-content: end;
+    
+    user-select: none;
+  }

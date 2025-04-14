@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quizzd: Start</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Question <%= questionNumber %> of <%= questions %></h1>
+      <div class="question">
+        <h3><%= question.question %></h3>
+        
+        <!-- /play/next for the router in questions.js -->
+        <form action="/play" method="POST">
+          <input name="cutsceneFinished" hidden readOnly>
+          <input name="questions" value="<%= questions %>" hidden readonly>
+          <input name="currentQuestion" value="<%= questionNumber %>" hidden readonly>
+          <div class="options">
+            <% options.forEach(function(option) { %>
+              <div class="option">
+                <input type="radio" id="<%= option.key %>" name="answer" value="<%= option.key %>" required>
+                <label for="<%= option.key %>"><%= option.key %>: <%= option.value %></label>
+              </div>
+            <% }); %>
+          </div>
+          <button type="submit" class="btn">Next Question</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel = 'stylesheet' href="/stylesheets/results.css">
+    <title>Quizzd</title>
+    <link rel="icon" type="image/png" href="/public/images/icon.png">
+</head>
+<body>
+    <%-include("../header.ejs")%>
+    <%-include("../background.ejs")%>
+
+    <div class="results-frame">
+        <div class="box">
+            <div class="white-text font-big">
+                <h1 class="pixelify-sans" style="font-size: 4em">Results</h1>
+            </div>
+            <div class="boxbg">
+                <div class="score font-big">
+                    <h1 class="pixelify-sans white-text">Score</h1>
+                    <div class="number white-text">
+                        <!-- Injection code here -->
+                         <h1 class="pixelify-sans" id="finalscore"><%= score %></h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="white-text pixelify-sans font-big">
+                <h1>Try Again?</h1>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <form action="/replay">
+                <button class="btn pixelify-sans">Replay</button>
+            </form>
+
+            <form method="get" action="/">
+                <button class = "btn pixelify-sans">Home</button>
+            </form>
+        </div>
+    </div>
+    <%-include("../home/footer.ejs")%>
+    <script src="./javascripts/script.js"></script>
+</body>
+</html>
