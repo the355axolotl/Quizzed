@@ -3,6 +3,15 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 
+/* GET home page. */
+router.get('/', function(req, res, next) {
+    // Any previous session that's on the homepage will now be resetted
+    req.session.questions = null;
+    req.session.currentQuestion = null;
+    req.session.score = null;
+  
+    res.render('index', { title: 'Quiz App' });
+  });
 
 
 router.post('/', (req, res) => {
@@ -15,11 +24,25 @@ router.post('/', (req, res) => {
 
     const question = req.session.questions[0];
     const choices = getOptionsForQuestion(question);
+
+    res.render('', {
+        question: question,
+        options: options,
+        questionNumber: 1,
+        totalQuestions: req.session.questions.length
+    });
+});
+
+/* POST answer submission */
+router.post('/submit', function(req,res) {
+    if (!req.session.questions || req.session.currentQuestion >= req.session.questions.length) {
+      return res.redirect('/');
+    }
 });
 
 function loadQuestions() {
     try {
-        const data = fs.readFileSync(path.join(__dirname, '../../model/questions.json'), 'utf-8');
+        const data = fs.readFileSync(path.join(__dirname, '../model/questions.json'), 'utf-8');
         return JSON.parse(data);
     } catch(error) {
         console.error('Error loading questions:', error.message);
