@@ -3,7 +3,7 @@ var router = express.Router();
 const questionModel = require('../model/questions');
 
 router.get('/', function(req, res, next) {
-    res.render('./views/index', { title : 'Quizzd'});
+    res.render('./index', { title : 'Quizzd'});
 })
 
 module.exports = router;
