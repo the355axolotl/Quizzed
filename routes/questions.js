@@ -21,9 +21,15 @@ router.post('/', (req, res) => {
     req.session.questions = getRandomQuestions();
     req.session.currentQuestion = !req.body["currentQuestion"] ? 0 : req.body["currentQuestion"];
     req.session.score = 0;
+    req.session.totalQuestions = numOfQuestions;
 
     let question = req.session.questions[req.session.currentQuestion];
     let choices = getOptionsForQuestion(question);
+
+    console.log(req.body["currentQuestion"], req.session.totalQuestions)
+    if (req.body["currentQuestion"] >= req.session.totalQuestions){
+        res.redirect('/results');
+    }
 
     res.render('./quiz', {
         question: question,
