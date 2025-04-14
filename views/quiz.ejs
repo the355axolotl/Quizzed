@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Quiz Question</title>
+    <title>Quizzd: Start</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <div class="container">
-      <h1>Question <%= questionNumber %> of <%= totalQuestions %></h1>
+      <h1>Question <%= questionNumber %> of <%= questions %></h1>
       <div class="question">
         <h3><%= question.question %></h3>
         
         <!-- /play/next for the router in questions.js -->
-        <form action="/play/" method="POST">
-          <input name="totalQuestions" value="<%= totalQuestions %>" hidden readonly>
+        <form action="/play" method="POST">
+          <input name="cutsceneFinished" hidden readOnly>
+          <input name="questions" value="<%= questions %>" hidden readonly>
+          <input name="currentQuestion" value="<%= questionNumber %>" hidden readonly>
           <div class="options">
             <% options.forEach(function(option) { %>
               <div class="option">

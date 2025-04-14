@@ -19,18 +19,17 @@ router.post('/', (req, res) => {
 
     // Current user session
     req.session.questions = getRandomQuestions();
-    req.session.currentQuestion = 0;
+    req.session.currentQuestion = !req.body["currentQuestion"] ? 0 : req.body["currentQuestion"];
     req.session.score = 0;
-    req.session.totalQuestions = numOfQuestions;
 
-    const question = req.session.questions[0];
-    const choices = getOptionsForQuestion(question);
+    let question = req.session.questions[req.session.currentQuestion];
+    let choices = getOptionsForQuestion(question);
 
     res.render('./quiz', {
         question: question,
         options: choices,
-        questionNumber: 1,
-        totalQuestions: req.session.totalQuestions
+        questionNumber: parseInt(req.session.currentQuestion) + 1,
+        questions: numOfQuestions
     });
 });
 
@@ -49,11 +48,11 @@ router.post('/', (req, res) => {
 
  */
 /* POST answer submission */
-router.post('/submit', function(req,res) {
-    if (!req.session.questions || req.session.currentQuestion >= req.session.questions.length) {
-      return res.redirect('/');
-    }
-});
+// router.post('/submit', function(req,res) {
+//     if (!req.session.questions || req.session.currentQuestion >= req.session.questions.length) {
+//       return res.redirect('/');
+//     }
+// });
 
 function loadQuestions() {
     try {
