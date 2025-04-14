@@ -2,6 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    const numOfQuestions = req.body["questions"];
+});
+
 function loadQuestions() {
     try {
         const data = fs.readFileSync(path.join(__dirname, '../../model/questions.json'), 'utf-8');
