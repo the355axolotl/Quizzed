@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
+const { log } = require('console');
 const router = express.Router();
 
 /* GET home page.... */
@@ -18,24 +19,33 @@ router.post('/', (req, res) => {
     const numOfQuestions = parseInt(req.body["questions"]);
 
     // Current user session
-    req.session.questions = getRandomQuestions();
-    req.session.currentQuestion = !req.body["currentQuestion"] ? 0 : req.body["currentQuestion"];
-    req.session.score = 0;
+    req.session.questions = req.session.questions != null ? req.session.questions : getRandomQuestions(numOfQuestions);
+    req.session.currentQuestion = !req.body["currentQuestion"] ? 0 : parseInt(req.body["currentQuestion"]);
+    req.session.score = req.session.score == null ? 0 : parseInt(req.session.score);
     req.session.totalQuestions = numOfQuestions;
 
     let question = req.session.questions[req.session.currentQuestion];
     let choices = getOptionsForQuestion(question);
 
-    console.log(req.body["currentQuestion"], req.session.totalQuestions)
+    console.log(req.body.answer, req.session.currentQuestion - 1, req.session.questions);
+    if (checkAnswer(req.session.currentQuestion - 1, req.body.answer, req.session.questions)){
+        req.session.score += 1;
+        console.log(req.body.answer);
+    }
+    console.log(req.session.score);
+    /* console.log(req.body["currentQuestion"], req.session.totalQuestions) */
     if (req.body["currentQuestion"] >= req.session.totalQuestions){
         res.redirect('/results');
     }
+    
+
 
     res.render('./quiz', {
         question: question,
         options: choices,
         questionNumber: parseInt(req.session.currentQuestion) + 1,
-        questions: numOfQuestions
+        questions: numOfQuestions,
+        score: req.session.score
     });
 });
 

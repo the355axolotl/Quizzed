@@ -4,7 +4,7 @@
     <title>Quizzd: Start</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body>
+  <body class="pixelify-sans" style="color: white">
     <div class="container">
       <h1>Question <%= questionNumber %> of <%= questions %></h1>
       <div class="question">
@@ -14,6 +14,7 @@
         <form action="/play" method="POST">
           <input name="cutsceneFinished" hidden readOnly>
           <input name="questions" value="<%= questions %>" hidden readonly>
+          <input name="score" value="<%= score %>" hidden readonly>
           <input name="currentQuestion" value="<%= questionNumber %>" hidden readonly>
           <div class="options">
             <% options.forEach(function(option) { %>
