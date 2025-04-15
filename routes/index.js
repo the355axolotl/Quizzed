@@ -20,6 +20,7 @@ router.get('/results', (req, res) => {
 
 router.get('/replay', (req,res) => {
     res.cookie("newSession", "false");
+    req.session.score = 0;
     res.redirect('/');
 });
 
