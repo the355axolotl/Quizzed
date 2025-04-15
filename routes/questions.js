@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     req.session.currentQuestion = null;
     req.session.score = null;
   
-    res.render('index', { title: 'Quiz App' });
+    res.render('./home/index', { title: 'Quiz App' });
   });
 
 
