@@ -39,6 +39,7 @@ router.post('/', (req, res) => {
     console.log(req.session.score);
     /* console.log(req.body["currentQuestion"], req.session.totalQuestions) */
     if (req.body["currentQuestion"] >= req.session.totalQuestions){
+        res.cookie("newSession", "true")
         res.redirect('/results');
     }
 

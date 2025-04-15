@@ -13,4 +13,8 @@ router.get('/results', (req, res) => {
     });
 });
 
+router.get('/replay', (req,res) => {
+    res.redirect('/play')
+});
+
 module.exports = router;
