@@ -122,3 +122,10 @@ function imposeMinMax(num){
           }
     }
   }
+
+  //Prevent input from being entered
+  document.getElementById("req-num").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+})
