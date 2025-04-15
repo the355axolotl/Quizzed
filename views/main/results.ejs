@@ -20,7 +20,7 @@
             <div class="boxbg">
                 <div class="score font-big">
                     <h1 class="pixelify-sans white-text">Score</h1>
-                    <div class="number white-text">
+                    <div class="number white-text press-start">
                         <!-- Injection code here -->
                          <h1 class="pixelify-sans" id="finalscore"><%= score %> / <%= totalQuestions %></h1>
                     </div>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="buttons">
-            <form action="/replay">
+            <form method="get" action="/replay">
                 <button class="btn pixelify-sans">Replay</button>
             </form>
 
@@ -42,7 +42,9 @@
             </form>
         </div>
     </div>
-    <%-include("../home/footer.ejs")%>
-    <script src="./javascripts/script.js"></script>
+    <%-include("../footer.ejs")%>
+    <script>
+        document.getElementById('settings').classList.toggle("no-show");
+    </script>
 </body>
 </html>
