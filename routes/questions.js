@@ -18,12 +18,25 @@ router.get('/', function(req, res, next) {
 router.post('/', (req, res) => {
     const numOfQuestions = parseInt(req.body["questions"]);
 
+    if (req.cookies.newSession == "true"){
+        req.session.questions = null;
+        req.session.currentQuestion = null;
+        req.session.score = null;
+        res.cookie("newSession", "false")
+    }
+
     // Current user session
     req.session.questions = req.session.questions != null ? req.session.questions : getRandomQuestions(numOfQuestions);
     req.session.currentQuestion = !req.body["currentQuestion"] ? 0 : parseInt(req.body["currentQuestion"]);
     req.session.score = req.session.score == null ? 0 : parseInt(req.session.score);
     req.session.totalQuestions = numOfQuestions;
-
+    
+    console.log(req.body.answer, req.session.currentQuestion - 1, req.session.questions);
+    if (checkAnswer(req.session.currentQuestion - 1, req.body.answer, req.session.questions)){
+        req.session.score += 1;
+        console.log(req.body.answer);
+    }
+    console.log(req.session.score);
     /* console.log(req.body["currentQuestion"], req.session.totalQuestions) */
     if (req.body["currentQuestion"] >= req.session.totalQuestions){
         res.redirect('/results');
@@ -31,14 +44,6 @@ router.post('/', (req, res) => {
 
     let question = req.session.questions[req.session.currentQuestion];
     let choices = getOptionsForQuestion(question);
-
-    console.log(req.body.answer, req.session.currentQuestion - 1, req.session.questions);
-    if (checkAnswer(req.session.currentQuestion - 1, req.body.answer, req.session.questions)){
-        req.session.score += 1;
-        console.log(req.body.answer);
-    }
-    console.log(req.session.score);
-    
 
 
     res.render('./quiz', {
