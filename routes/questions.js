@@ -24,6 +24,11 @@ router.post('/', (req, res) => {
     req.session.score = req.session.score == null ? 0 : parseInt(req.session.score);
     req.session.totalQuestions = numOfQuestions;
 
+    /* console.log(req.body["currentQuestion"], req.session.totalQuestions) */
+    if (req.body["currentQuestion"] >= req.session.totalQuestions){
+        res.redirect('/results');
+    }
+
     let question = req.session.questions[req.session.currentQuestion];
     let choices = getOptionsForQuestion(question);
 
@@ -33,10 +38,6 @@ router.post('/', (req, res) => {
         console.log(req.body.answer);
     }
     console.log(req.session.score);
-    /* console.log(req.body["currentQuestion"], req.session.totalQuestions) */
-    if (req.body["currentQuestion"] >= req.session.totalQuestions){
-        res.redirect('/results');
-    }
     
 
 
