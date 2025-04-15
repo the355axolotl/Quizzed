@@ -5,6 +5,10 @@
   src: url(../fonts/PressStart2P-vaV7.ttf);
 }
 
+.press-start {
+  font-family: "Pixelify Sans", sans-serif;
+}
+
 .pixelify-sans {
   font-family: "Pixelify Sans", sans-serif;
   font-optical-sizing: auto;

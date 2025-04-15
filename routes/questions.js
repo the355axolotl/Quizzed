@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
     
 
 
-    res.render('./quiz', {
+    res.render('./main/quiz', {
         question: question,
         options: choices,
         questionNumber: parseInt(req.session.currentQuestion) + 1,
