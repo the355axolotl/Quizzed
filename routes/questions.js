@@ -19,35 +19,48 @@ router.get('/', function(req, res, next) {
 
 router.post('/', async (req, res) => {
     const numOfQuestions = parseInt(req.body["questions"]);
-    let response = null
+    let apiData = null
     if (req.cookies.newSession == "true"){
         req.session.questions = null;
         req.session.currentQuestion = null;
         req.session.score = null;
         res.cookie("newSession", "false")
-        response = getQuestions(req.cookies.session, numOfQuestions);
+        apiData = getQuestions(req.cookies.session, numOfQuestions);
+        console.log((await apiData).data)
     }
 
 
     // Current user session
-    req.session.questions = req.session.questions != null ? req.session.questions : getRandomQuestions(numOfQuestions);
+    req.session.questions = req.session.questions != null ? req.session.questions : (await apiData)?.data;
     req.session.currentQuestion = !req.body["currentQuestion"] ? 0 : parseInt(req.body["currentQuestion"]);
     req.session.score = req.session.score == null ? 0 : parseInt(req.session.score);
     req.session.totalQuestions = numOfQuestions;
-    
-    //console.log(req.body.answer, req.session.currentQuestion - 1, req.session.questions);
-    if (checkAnswer(req.session.currentQuestion - 1, req.body.answer, req.session.questions)){
-        req.session.score += 1;
-        console.log(req.body.answer);
+    //The Omega Failsafe in case the server restarts
+    //and the new cookie session didn't reset
+    //You were a goober and stopped the server in the middle of the questions page 
+    //and didn't delete cookies
+    if(req.session.questions == null){
+        apiData = getQuestions(req.cookies.session, numOfQuestions);
+        req.session.questions = (await apiData)?.data;
+    }
+
+    //console.log(req.body.answer, req.session.currentQuestion - 1);
+    try {
+        if (checkAnswer(req.session.currentQuestion - 1, req.body.answer, req.session.questions)){
+            req.session.score += 1;
+            console.log(req.body.answer);
+        }
+    } catch (error) {
+        console.log("check answer error", error.message)
     }
     console.log(req.session.score);
     /* console.log(req.body["currentQuestion"], req.session.totalQuestions) */
-    if (req.body["currentQuestion"] >= req.session.totalQuestions){
+    if (req.session.currentQuestion >= req.session.totalQuestions){
         res.cookie("newSession", "true")
-        res.redirect('/results');
+        return res.redirect('/results');
     }
 
-    let question = req.session.questions[req.session.currentQuestion];
+    let question = req.session.questions.results[req.session.currentQuestion];
     let choices = getOptionsForQuestion(question);
 
 
@@ -92,7 +105,8 @@ function loadQuestions() {
 }
 
 //This might replace getRandomQuestions
-async function getQuestions(token, num){
+//Default null incase you did not get a token
+async function getQuestions(token = null, num = 10){
     const response = await axios.get(
         baseURL,
         {
@@ -113,17 +127,24 @@ function getRandomQuestions(num) {
 }
 
 function checkAnswer(questionIndex, userAnswer, questions) {
-    const currQuestion = questions[questionIndex];
+    const currQuestion = questions.results[questionIndex];
+    //console.log(currQuestion);
     if (!currQuestion) return false;
-    return currQuestion.answer === userAnswer;
+    return currQuestion.correct_answer === userAnswer;
 }
+
+// function checkAnswer(questionIndex, userAnswer, questions) {
+//     const currQuestion = questions[questionIndex];
+//     if (!currQuestion) return false;
+//     return currQuestion.answer === userAnswer;
+// }
 
 function getOptionsForQuestion(question) {
     return [
-        { key: 'A', value: question.A},
-        { key: 'B', value: question.B},
-        { key: 'C', value: question.C},
-        { key: 'D', value: question.D},
+        { key: 'A', value: question.correct_answer},
+        { key: 'B', value: question.incorrect_answers[0]},
+        { key: 'C', value: question.incorrect_answers[1]},
+        { key: 'D', value: question.incorrect_answers[2]},
         
     ];
 }
