@@ -130,10 +130,10 @@ async function getQuestions(token = null, num = 10, difficulty = null, category 
     return response;
 }
 
-function getRandomQuestions(num) {
-    const shuffled = [...questionsData].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, num)
-}
+// function getRandomQuestions(num) {
+//     const shuffled = [...questionsData].sort(() => 0.5 - Math.random());
+//     return shuffled.slice(0, num)
+// }
 
 function checkAnswer(questionIndex, userAnswer, questions) {
     const currQuestion = questions.results[questionIndex];
