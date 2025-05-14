@@ -3,7 +3,8 @@ const path = require('path');
 const express = require('express');
 const { log } = require('console');
 const router = express.Router();
-var axios = require("axios")
+var axios = require("axios");
+const baseURL = "https://opentdb.com/api.php";
 
 /* GET home page.... */
 router.get('/', function(req, res, next) {
@@ -18,25 +19,15 @@ router.get('/', function(req, res, next) {
 
 router.post('/', async (req, res) => {
     const numOfQuestions = parseInt(req.body["questions"]);
-
+    
     if (req.cookies.newSession == "true"){
         req.session.questions = null;
         req.session.currentQuestion = null;
         req.session.score = null;
         res.cookie("newSession", "false")
+        response = getQuestions();
     }
 
-    const baseURL = "https://opentdb.com/api.php";
-    const response = await axios.get(
-        baseURL,
-        {
-            params: {
-                amount: numOfQuestions,
-                type: 'multiple'
-            }
-        }
-    );
-    console.log(response.data);
 
     // Current user session
     req.session.questions = req.session.questions != null ? req.session.questions : getRandomQuestions(numOfQuestions);
@@ -98,6 +89,21 @@ function loadQuestions() {
         console.error('Error loading questions:', error.message);
         return [];
     }
+}
+
+//This might replace getRandomQuestions
+function getQuestions(){
+    const response = axios.get(
+        baseURL,
+        {
+            params: {
+                amount: numOfQuestions,
+                type: 'multiple'
+            }
+        }
+    );
+    console.log(response.data);
+    return response;
 }
 
 function getRandomQuestions(num) {
