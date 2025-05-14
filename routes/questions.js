@@ -27,6 +27,12 @@ router.post('/', async (req, res) => {
         res.cookie("newSession", "false")
         apiData = getQuestions(req.cookies.session, numOfQuestions);
         console.log((await apiData).data)
+        //response code 3 means token doesn't exist
+        if ((await apiData).data.response_code == 3){
+            //waits 5 seconds because API calls are limited once per 5 seconds
+            setTimeout(5000);
+            apiData = getQuestions(null,numOfQuestions)
+        }
     }
 
 
