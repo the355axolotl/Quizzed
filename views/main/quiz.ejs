@@ -21,9 +21,9 @@
         <div class="quiz-wrapper-bottom">
           <form id="answer-form" action="/play" method="POST">
             <input name="cutsceneFinished" hidden readOnly>
-            <input name="questions" value="<%= questions %>" hidden readonly>
+            <input id="total-qs" name="questions" value="<%= questions %>" hidden readonly>
             <input name="score" value="<%= score %>" hidden readonly>
-            <input name="currentQuestion" value="<%= questionNumber %>" hidden readonly>
+            <input id="current-qs" name="currentQuestion" value="<%= questionNumber %>" hidden readonly>
             <div class="options-frame">
               <% options.forEach(function(option) { %>
                 <div class="option">
@@ -43,8 +43,6 @@
     </div>
 
     <%-include("../footer.ejs")%>
-    <script>
-      document.getElementById('settings').classList.toggle("no-show");
-    </script>
+    <script src="./javascripts/quiz.js"></script>
   </body>
 </html>

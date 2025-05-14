@@ -133,7 +133,7 @@ header > * {
 .header-left { justify-content: flex-start; flex: .5;}
 .header-right { justify-content: flex-end; gap: 40px; flex: 1;}
 
-#credits, #settings{
+#credits, #settings, #end-round{
   background-color: transparent;
   border: transparent;
 
@@ -143,7 +143,7 @@ header > * {
 
 }
 
-#credits:hover, #settings:hover {
+#credits:hover, #settings:hover, #end-round:hover {
   background-color: #0000ff;
 }
 
@@ -276,7 +276,7 @@ header > * {
 
 
 /* SETTINGS FRAME */
-.var-questions, .var-difficulty {
+.var-questions, .var-timer {
   width: 100%;
   height: 15%;
   min-height: 50px;
@@ -286,7 +286,7 @@ header > * {
   align-items: center;
 }
 
-#req-num {
+.req-setting {
   flex: .25;
 
   width: 100%;

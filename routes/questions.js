@@ -34,26 +34,26 @@ router.post('/', (req, res) => {
     console.log(req.body.answer, req.session.currentQuestion - 1, req.session.questions);
     if (checkAnswer(req.session.currentQuestion - 1, req.body.answer, req.session.questions)){
         req.session.score += 1;
-        console.log(req.body.answer);
+        //console.log(req.body.answer);
     }
-    console.log(req.session.score);
+    //console.log(req.session.score);
     /* console.log(req.body["currentQuestion"], req.session.totalQuestions) */
     if (req.body["currentQuestion"] >= req.session.totalQuestions){
         res.cookie("newSession", "true")
         res.redirect('/results');
+    } else {
+        let question = req.session.questions[req.session.currentQuestion];
+        let choices = getOptionsForQuestion(question);
+
+
+        res.render('./main/quiz', {
+            question: question,
+            options: choices,
+            questionNumber: parseInt(req.session.currentQuestion) + 1,
+            questions: numOfQuestions,
+            score: req.session.score
+        });
     }
-
-    let question = req.session.questions[req.session.currentQuestion];
-    let choices = getOptionsForQuestion(question);
-
-
-    res.render('./main/quiz', {
-        question: question,
-        options: choices,
-        questionNumber: parseInt(req.session.currentQuestion) + 1,
-        questions: numOfQuestions,
-        score: req.session.score
-    });
 });
 
 /* router.post('/next', (req, res) => {
