@@ -6,8 +6,10 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var questionsRouter = require('./routes/questions');
+var signupRouter = require('./routes/signup');
 
 var session = require('express-session');
+const { sign } = require('crypto');
 var app = express();
 
 // view engine setup
@@ -28,6 +30,7 @@ app.use(session({
 }))
 
 // Routes
+app.use('/signup',signupRouter);
 app.use('/play', questionsRouter);
 app.use('/', indexRouter);
 

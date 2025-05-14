@@ -2,13 +2,15 @@ const express = require('express');
 var router = express.Router();
 const questionModel = require('../model/questions');
 
+
+
 router.get('/', function(req, res, next) {
     if (req.cookies.newSession == "false") {
         res.cookie("newSession", "false");
     } else {
         res.cookie("newSession", "true");
     }
-    res.render('./home/index', { title : 'Quizzd'});
+    res.render('./signup/signup', { title : 'Quizzd'});
 });
 
 router.get('/results', (req, res) => {

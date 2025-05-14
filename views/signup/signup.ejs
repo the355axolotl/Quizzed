@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/quiz.css' />
+    <link rel='stylesheet' href='/stylesheets/signup.css'/>
+    <title>Quizzd: Sign Up</title>
+  </head>
+  <body>
+    <%- include("../header.ejs") %>
+    <%- include("../background.ejs") %>
+
+    <div class="quiz-frame pixelify-sans" id="quiz-frame-id">
+      <div class="quiz-wrapper pixelify-sans">
+        <div class="quiz-wrapper-top">
+          <h1>Create Your Account</h1>
+          <h3>Join Quizzd to test your knowledge!</h3>
+        </div>
+
+        <div class="quiz-wrapper-bottom">
+          <form id="signup-form" action="/signup" method="POST">
+        <div class="form-field">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-field">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirmPassword" required>
+        </div>
+        <button type="submit" class="btn pixelify-sans">Sign Up</button>
+        </form>
+
+          <p style="margin-top: 1rem;">Already have an account? <a href="/login">Log in</a></p>
+        </div>
+      </div>
+    </div>
+
+    <%- include("../footer.ejs") %>
+    <script>
+      document.getElementById('settings').classList.toggle("no-show");
+    </script>
+  </body>
+</html>
