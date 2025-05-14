@@ -63,6 +63,13 @@ router.post('/', async (req, res) => {
     let question = req.session.questions.results[req.session.currentQuestion];
     let choices = getOptionsForQuestion(question);
 
+    //console.log(question.question);
+    //This should make quotes actually quotes and apotrophies actually apohstrophies
+    let fix = question.question;
+    fix = fix.replaceAll("&quot;", "\"");
+    fix = fix.replaceAll("&#039;", "\'");
+    question.question = fix;
+    console.log(question.question);
 
     res.render('./main/quiz', {
         question: question,
