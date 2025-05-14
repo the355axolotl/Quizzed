@@ -19,13 +19,13 @@ router.get('/', function(req, res, next) {
 
 router.post('/', async (req, res) => {
     const numOfQuestions = parseInt(req.body["questions"]);
-    
+    let response = null
     if (req.cookies.newSession == "true"){
         req.session.questions = null;
         req.session.currentQuestion = null;
         req.session.score = null;
         res.cookie("newSession", "false")
-        response = getQuestions();
+        response = getQuestions(req.cookies.session, numOfQuestions);
     }
 
 
@@ -92,13 +92,14 @@ function loadQuestions() {
 }
 
 //This might replace getRandomQuestions
-function getQuestions(){
-    const response = axios.get(
+async function getQuestions(token, num){
+    const response = await axios.get(
         baseURL,
         {
             params: {
-                amount: numOfQuestions,
-                type: 'multiple'
+                amount: num,
+                type: 'multiple',
+                token: token
             }
         }
     );
