@@ -106,14 +106,16 @@ function loadQuestions() {
 
 //This might replace getRandomQuestions
 //Default null incase you did not get a token
-async function getQuestions(token = null, num = 10){
+async function getQuestions(token = null, num = 10, difficulty = null, category = null, type = 'multiple'){
     const response = await axios.get(
         baseURL,
         {
             params: {
                 amount: num,
-                type: 'multiple',
-                token: token
+                type: type,
+                token: token,
+                difficulty: difficulty,
+                category: category
             }
         }
     );
