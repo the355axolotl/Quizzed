@@ -139,6 +139,7 @@ function checkAnswer(questionIndex, userAnswer, questions) {
 //     return currQuestion.answer === userAnswer;
 // }
 
+//Figure out how to randomize this
 function getOptionsForQuestion(question) {
     return [
         { key: 'A', value: question.correct_answer},
