@@ -5,29 +5,29 @@ const router = express.Router();
 const users = []; // In real apps, use a database
 
 // GET signup page
-router.get('/signup', (req, res) => {
-  res.render('signup', { error: null });
+router.get('/', (req, res) => {
+  res.render('signup/signup', { error: null });
 });
 
 // POST signup form
-router.post('/signup', (req, res) => {
+router.post('/', (req, res) => {
   const { username, password, confirmPassword } = req.body;
 
   // Simple validation
   if (password !== confirmPassword) {
-    return res.render('signup', { error: 'Passwords do not match' });
+    return res.render('signup/signup', { error: 'Passwords do not match' });
   }
 
   const userExists = users.find(user => user.username === username);
   if (userExists) {
-    return res.render('signup', { error: 'Username already taken' });
+    return res.render('signup/signup', { error: 'Username already taken' });
   }
 
   // Add user (no hashing for now)
   users.push({ username, password });
 
-  // Redirect to login after successful signup
-  res.redirect('/login');
+  // Redirect to signin after successful signup
+  res.redirect('/signin');
 });
 
 module.exports = router;

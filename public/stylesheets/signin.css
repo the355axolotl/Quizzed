@@ -1,0 +1,24 @@
+/* Stack the fields and reduce box size */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+/* Smaller input boxes */
+.form-field input {
+  width: 200px;
+  padding: 6px 8px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  display: block;               /* buttons are inline by default */
+  margin: 20px auto;            /* top-bottom: 20px, left-right: auto (centers it) */
+  padding: 10px 20px;
+  font-size: 16px;
+  
+}

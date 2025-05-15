@@ -6,7 +6,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/quiz.css' />
     <link rel='stylesheet' href='/stylesheets/signup.css'/>
-    <title>Quizzd: Sign Up</title>
+    <title>Quizzd: Sign In</title>
   </head>
   <body>
     <%- include("../header.ejs") %>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="quiz-wrapper-bottom">
-          <form id="signup-form" action="/signup" method="POST">
+          <form id="signin-form" action="/signin" method="POST">
         <div class="form-field">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
@@ -29,14 +29,11 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <div class="form-field">
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirmPassword" required>
-        </div>
-        <button type="submit" class="btn pixelify-sans">Sign Up</button>
+        
+        <button type="submit" class="btn pixelify-sans">Login</button>
         </form>
 
-          <p style="margin-top: 1rem;">Already have an account? <a href="/signin">Log in</a></p>
+          <p style="margin-top: 1rem;">Don't have an account? <a href="/signup">Sign up</a></p>
         </div>
       </div>
     </div>
