@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     req.session.currentQuestion = null;
     req.session.score = null;
   
-    res.render('./home/index', { title: 'Quiz App' });
+    res.render('./home/index', { title: 'Quizzd' });
   });
 
 
@@ -22,6 +22,7 @@ router.post('/', (req, res) => {
         req.session.questions = null;
         req.session.currentQuestion = null;
         req.session.score = null;
+        req.session.timer = null;
         res.cookie("newSession", "false")
     }
 
@@ -30,6 +31,7 @@ router.post('/', (req, res) => {
     req.session.currentQuestion = !req.body["currentQuestion"] ? 0 : parseInt(req.body["currentQuestion"]);
     req.session.score = req.session.score == null ? 0 : parseInt(req.session.score);
     req.session.totalQuestions = numOfQuestions;
+    req.session.timer = req.session.timer == null ? req.body.timer : req.session.timer;
     
     console.log(req.body.answer, req.session.currentQuestion - 1, req.session.questions);
     if (checkAnswer(req.session.currentQuestion - 1, req.body.answer, req.session.questions)){
@@ -47,11 +49,13 @@ router.post('/', (req, res) => {
 
 
         res.render('./main/quiz', {
+            title: "Quizzd: Start",
             question: question,
             options: choices,
             questionNumber: parseInt(req.session.currentQuestion) + 1,
             questions: numOfQuestions,
-            score: req.session.score
+            score: req.session.score,
+            timer: req.session.timer
         });
     }
 });

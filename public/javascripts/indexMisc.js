@@ -65,11 +65,6 @@ RETURN_BTN.addEventListener('click', function(){
 
 
 
-
-// DEFAULT SETTINGS
-const NUM_QUESTIONS = 5;
-const TIMER = 30; //seconds
-
 let SETTINGS_FRAME = document.getElementById('settings-frame-id');
 let SETTINGS_BTN = document.getElementById('settings');
 let SETTINGS_CANCEL = document.getElementById('settings-cancel');
@@ -127,7 +122,6 @@ function imposeMinMax(num){
 var SETTINGS_ELEMENTS = document.getElementsByClassName("req-setting");
 
 for (var i = 0; i < SETTINGS_ELEMENTS.length; i++) {
-    SETTINGS_ELEMENTS[i].value = SETTINGS_ELEMENTS[i].min;
     SETTINGS_ELEMENTS[i].addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             event.preventDefault();

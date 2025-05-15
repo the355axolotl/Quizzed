@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/quiz.css' />
-    <title>Quizzd: Start</title>
+    <title> <%= title %></title>
   </head>
   <body>
     <%-include("../header.ejs")%>
@@ -23,7 +23,9 @@
             <input name="cutsceneFinished" hidden readOnly>
             <input id="total-qs" name="questions" value="<%= questions %>" hidden readonly>
             <input name="score" value="<%= score %>" hidden readonly>
+            <input name="timer" value="<%= timer %>" hidden readonly>
             <input id="current-qs" name="currentQuestion" value="<%= questionNumber %>" hidden readonly>
+            
             <div class="options-frame">
               <% options.forEach(function(option) { %>
                 <div class="option">
