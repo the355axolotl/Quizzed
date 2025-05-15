@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
         req.session.score = null;
         res.cookie("newSession", "false")
         apiData = getQuestions(req.cookies.session, numOfQuestions);
-        console.log((await apiData).data)
+        //console.log((await apiData).data)
     }
 
 
