@@ -64,7 +64,6 @@ router.post('/', async (req, res) => {
     let question = req.session.questions.results[req.session.currentQuestion];
     let choices = getOptionsForQuestion(question);
 
-    //console.log(question.question);
     //This should make quotes actually quotes and apotrophies actually apohstrophies
     let fix = entities.decode(question.question);
     // fix = fix.replaceAll("&quot;", "\"");
@@ -140,7 +139,7 @@ function checkAnswer(questionIndex, userAnswer, questions) {
     const currQuestion = questions.results[questionIndex];
     //console.log(currQuestion);
     if (!currQuestion) return false;
-    return currQuestion.correct_answer === userAnswer;
+    return entities.decode(currQuestion.correct_answer) === entities.decode(userAnswer);
 }
 
 // function checkAnswer(questionIndex, userAnswer, questions) {
@@ -153,7 +152,8 @@ function checkAnswer(questionIndex, userAnswer, questions) {
 //Put the answers into an array then randomize the array is one idea
 function getOptionsForQuestion(question) {
     let array =[];
-    array.push(question.correct_answer, question.incorrect_answers[0], question.incorrect_answers[1], question.incorrect_answers[2]);
+    array.push(entities.decode(question.correct_answer), entities.decode(question.incorrect_answers[0]),
+        entities.decode(question.incorrect_answers[1]), entities.decode(question.incorrect_answers[2]));
     console.log(array);
     array = shuffle(array);
     console.log(array);
