@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
     } else {
         res.cookie("newSession", "true");
     }
-    res.render('./signup/signup', { title : 'Quizzd'});
+    res.render('./signup/signup');
 });
 
 router.get('/results', (req, res) => {
