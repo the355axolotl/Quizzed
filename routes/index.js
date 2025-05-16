@@ -3,8 +3,14 @@ var router = express.Router();
 const questionModel = require('../model/questions');
 
 router.get('/', function(req, res, next) {
-    var totalQs = req.session.totalQuestions == null ? 5 : req.session.totalQuestions;
-    var time = req.session.timer == null ? 30 : req.session.timer;
+    // Adjust min and max config here for game settings
+    var minQs = 5;
+    var maxQs = 50;
+    var minTimer = 30;
+    var maxTimer = 120;
+
+    var totalQs = req.session.totalQuestions == null ? minQs : req.session.totalQuestions;
+    var time = req.session.timer == null ? minTimer : req.session.timer;
 
     if (req.cookies.newSession == "false") {
         res.cookie("newSession", "false");
@@ -14,7 +20,11 @@ router.get('/', function(req, res, next) {
     res.render('./home/index', { 
         title: 'Quizzd',
         totalQuestions: totalQs,
-        timer: time
+        timer: time,
+        minQuestions: minQs,
+        maxQuestions: maxQs,
+        minTimer: minTimer,
+        maxTimer: maxTimer
     });
 });
 

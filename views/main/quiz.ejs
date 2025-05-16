@@ -29,7 +29,7 @@
             <div class="options-frame">
               <% options.forEach(function(option) { %>
                 <div class="option">
-                  <input type="radio" id="<%= option.key %>" name="answer" value="<%= option.key %>" required>
+                  <input type="checkbox" id="<%= option.key %>" name="answer" value="<%= option.key %>" required>
                   <div class="label-wrapper">
                     <label for="<%= option.key %>"><%= option.key %>: <%= option.value %></label>
                   </div>

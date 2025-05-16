@@ -44,26 +44,32 @@
     <div class="settings-wrapper" style="font-size: 2em; gap: 50px">
         <h2>Settings</h2>
         <div class="var-questions">
-            <span style="flex: .75;">Number of questions:</span>
-            <input class="req-setting"
-                id="user-questions"
-                form="form-start"
-                name="questions" 
-                min="5"max="50" 
-                value= "<%= totalQuestions %>"
-                onblur="imposeMinMax(this)">
-            </input>
+            <div class="var-questions-main">
+                <span style="flex: .75;">Number of questions:</span>
+                <input class="req-setting"
+                    id="user-questions"
+                    form="form-start"
+                    name="questions" 
+                    min="<%=minQuestions%>"max="<%=maxQuestions%>" 
+                    value= "<%= totalQuestions %>"
+                    onblur="imposeMinMax(this)">
+                </input>
+            </div>
+            <span class="press-start" style="font-size: .3em">(Min: <%=minQuestions%>, Max: <%=maxQuestions%>)</span>
         </div>
         <div class="var-timer">
-            <span style="flex: .75;">Timer (seconds):</span>
-            <input class="req-setting"
-                    id="user-timer"
-                    form="form-start"
-                    name="timer"
-                    min="30" max="120"
-                    value = "<%= timer %>"
-                    onblur="imposeMinMax(this)">
-            </input>
+            <div class="var-timer-main">
+                <span style="flex: .75;">Timer (seconds):</span>
+                <input class="req-setting"
+                        id="user-timer"
+                        form="form-start"
+                        name="timer"
+                        min="<%=minTimer%>" max="<%=maxTimer%>"
+                        value = "<%= timer %>"
+                        onblur="imposeMinMax(this)">
+                </input>
+            </div>
+            <span class="press-start" style="font-size: .3em">(Min: <%=minTimer%>, Max: <%=maxTimer%>)</span>
         </div>
         <button class="pixelify-sans" id="settings-cancel">Return</button>
     </div>

@@ -6,7 +6,7 @@
 }
 
 .press-start {
-  font-family: "Pixelify Sans", sans-serif;
+  font-family: "Press Start", sans-serif;
 }
 
 .pixelify-sans {
@@ -102,6 +102,13 @@ body, .background {
   background: #000 url(../images/stars3.png) repeat top center;
   transform: scale(1.2, 1.2);
   z-index: -4;
+}
+
+
+
+/* CUSTOM CHECKBOX */
+label input {
+  display: none; /* Hide the default checkbox */
 }
 
 
@@ -247,7 +254,7 @@ header > * {
 .instructions-wrapper, .settings-wrapper {
   width: 45%;
   min-width: 325px;
-  height: 55%;
+  height: 65%;
   min-height: 400px;
 
   border: #FFF 8px solid;
@@ -281,6 +288,15 @@ header > * {
   height: 15%;
   min-height: 50px;
 
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.var-questions-main, .var-timer-main {
   display: flex;
   justify-content: flex-start;
   align-items: center;
