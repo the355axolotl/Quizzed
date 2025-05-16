@@ -55,7 +55,8 @@ router.post('/', (req, res) => {
             questionNumber: parseInt(req.session.currentQuestion) + 1,
             questions: numOfQuestions,
             score: req.session.score,
-            timer: req.session.timer
+            timer: req.session.timer,
+            answer: question["answer"]
         });
     }
 });

@@ -20,7 +20,6 @@
 
         <div class="quiz-wrapper-bottom">
           <form id="answer-form" action="/play" method="POST">
-            <input name="cutsceneFinished" hidden readOnly>
             <input id="total-qs" name="questions" value="<%= questions %>" hidden readonly>
             <input name="score" value="<%= score %>" hidden readonly>
             <input name="timer" value="<%= timer %>" hidden readonly>
@@ -28,23 +27,24 @@
             
             <div class="options-frame">
               <% options.forEach(function(option) { %>
-                <div class="option">
-                  <input type="checkbox" id="<%= option.key %>" name="answer" value="<%= option.key %>" required>
+                <div class="option no-show" id="<%= option.key %>">
+                  <input class="answerChoice" type="radio" name="answer" value="<%= option.key %>" required>
                   <div class="label-wrapper">
                     <label for="<%= option.key %>"><%= option.key %>: <%= option.value %></label>
                   </div>
                 </div>
               <% }); %>
+              <input id="ansk" name="ansk" value="<%= answer %>" hidden readonly>
             </div>
           </form>
 
-          <button form="answer-form" type="submit" class="btn pixelify-sans">Submit Answer</button>
+          <button form="answer-form" type="submit" id="submit-answer" class="btn pixelify-sans no-show">Submit Answer</button>
         </div>
 
       </div>
     </div>
 
     <%-include("../footer.ejs")%>
-    <script src="./javascripts/quiz.js"></script>
+    <script src="./javascripts/quiz.js" defer></script>
   </body>
 </html>
