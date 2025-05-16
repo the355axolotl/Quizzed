@@ -1,28 +1,23 @@
 const express = require('express');
-const router = express.Router();
+const User = require('../model/users');
 
-// Temporary in-memory user store
-const users = []; // Use a real DB in production
+const router = express.Router();
 
 router.get('/', (req, res) => {
   res.render('signup/signin', { error: null });
 });
-;
-// POST sign-in form
-router.post('/', (req, res) => {
+
+router.post('/', async (req, res) => {
   const { username, password } = req.body;
 
-  // Look for a user match
-  const user = users.find(u => u.username === username && u.password === password);
+  const user = await User.findOne({ username, password }); // You’ll hash & compare in future
 
   if (!user) {
     return res.render('signup/signin', { error: 'Invalid username or password' });
   }
 
-  // TODO: Set session/cookie here if needed
-
-  // Redirect to dashboard or quiz
-  res.redirect('/index'); // Change route to whatever you want
+  req.session.user = { username: user.username };
+  res.redirect('/'); // Or wherever your dashboard is
 });
 
 module.exports = router;
