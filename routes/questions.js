@@ -5,6 +5,7 @@ const { log } = require('console');
 const router = express.Router();
 var axios = require("axios");
 const baseURL = "https://opentdb.com/api.php";
+const entities = require("html-entities");
 
 /* GET home page.... */
 router.get('/', function(req, res, next) {
@@ -65,9 +66,9 @@ router.post('/', async (req, res) => {
 
     //console.log(question.question);
     //This should make quotes actually quotes and apotrophies actually apohstrophies
-    let fix = question.question;
-    fix = fix.replaceAll("&quot;", "\"");
-    fix = fix.replaceAll("&#039;", "\'");
+    let fix = entities.decode(question.question);
+    // fix = fix.replaceAll("&quot;", "\"");
+    // fix = fix.replaceAll("&#039;", "\'");
     question.question = fix;
     console.log(question.question);
 
