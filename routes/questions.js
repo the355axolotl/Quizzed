@@ -54,6 +54,7 @@ router.post('/', async (req, res) => {
     } catch (error) {
         console.log("check answer error", error.message)
     }
+    console.log(req.body.answer);
     console.log(req.session.score);
     /* console.log(req.body["currentQuestion"], req.session.totalQuestions) */
     if (req.session.currentQuestion >= req.session.totalQuestions){
@@ -61,18 +62,18 @@ router.post('/', async (req, res) => {
         return res.redirect('/results');
     }
 
-    let question = req.session.questions.results[req.session.currentQuestion];
-    let choices = getOptionsForQuestion(question);
+    let getQuestion = req.session.questions.results[req.session.currentQuestion];
+    let choices = getOptionsForQuestion(getQuestion);
 
     //This should make quotes actually quotes and apotrophies actually apohstrophies
-    let fix = entities.decode(question.question);
+    let fix = entities.decode(getQuestion.question);
     // fix = fix.replaceAll("&quot;", "\"");
     // fix = fix.replaceAll("&#039;", "\'");
-    question.question = fix;
-    console.log(question.question);
+    getQuestion.question = fix;
+    console.log(getQuestion.question);
 
     res.render('./main/quiz', {
-        question: question,
+        question: getQuestion,
         options: choices,
         questionNumber: parseInt(req.session.currentQuestion) + 1,
         questions: numOfQuestions,
@@ -101,15 +102,7 @@ router.post('/', async (req, res) => {
 //     }
 // });
 
-function loadQuestions() {
-    try {
-        const data = fs.readFileSync(path.join(__dirname, '../model/questions.json'), 'utf-8');
-        return JSON.parse(data);
-    } catch(error) {
-        console.error('Error loading questions:', error.message);
-        return [];
-    }
-}
+
 
 //This might replace getRandomQuestions
 //Default null incase you did not get a token
@@ -130,10 +123,7 @@ async function getQuestions(token = null, num = 10, difficulty = null, category 
     return response;
 }
 
-// function getRandomQuestions(num) {
-//     const shuffled = [...questionsData].sort(() => 0.5 - Math.random());
-//     return shuffled.slice(0, num)
-// }
+
 
 function checkAnswer(questionIndex, userAnswer, questions) {
     const currQuestion = questions.results[questionIndex];
@@ -142,11 +132,6 @@ function checkAnswer(questionIndex, userAnswer, questions) {
     return entities.decode(currQuestion.correct_answer) === entities.decode(userAnswer);
 }
 
-// function checkAnswer(questionIndex, userAnswer, questions) {
-//     const currQuestion = questions[questionIndex];
-//     if (!currQuestion) return false;
-//     return currQuestion.answer === userAnswer;
-// }
 
 //Figure out how to randomize this
 //Put the answers into an array then randomize the array is one idea
@@ -187,7 +172,6 @@ function shuffle(array) {
 }
 
 
-const questionsData = loadQuestions();
 
 module.exports = router;
 
