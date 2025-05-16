@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
     //You were a goober and stopped the server in the middle of the questions page 
     //and didn't delete cookies
     if(req.session.questions == null){
-        apiData = getQuestions(req.cookies.session, numOfQuestions);
+        apiData = getQuestions(null, numOfQuestions);
         req.session.questions = (await apiData)?.data;
     }
 
@@ -149,15 +149,42 @@ function checkAnswer(questionIndex, userAnswer, questions) {
 // }
 
 //Figure out how to randomize this
+//Put the answers into an array then randomize the array is one idea
 function getOptionsForQuestion(question) {
+    let array =[];
+    array.push(question.correct_answer, question.incorrect_answers[0], question.incorrect_answers[1], question.incorrect_answers[2]);
+    console.log(array);
+    array = shuffle(array);
+    console.log(array);
     return [
-        { key: 'A', value: question.correct_answer},
-        { key: 'B', value: question.incorrect_answers[0]},
-        { key: 'C', value: question.incorrect_answers[1]},
-        { key: 'D', value: question.incorrect_answers[2]},
+        { key: 'A', value: array[0]},
+        { key: 'B', value: array[1]},
+        { key: 'C', value: array[2]},
+        { key: 'D', value: array[3]},
         
     ];
 }
+
+//from stack overflow, it is the Fisher–Yates Shuffle.
+//https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+function shuffle(array) {
+  var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
+}
+
 
 const questionsData = loadQuestions();
 
