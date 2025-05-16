@@ -10,7 +10,12 @@ router.get('/', function(req, res, next) {
     } else {
         res.cookie("newSession", "true");
     }
-    res.render('./signup/signup');
+    if(req.cookies.signedin == "true"){
+        res.render('./home/index')
+    }
+    else{
+        res.redirect('./signup');
+    }
 });
 
 router.get('/results', (req, res) => {

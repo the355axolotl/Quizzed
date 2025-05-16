@@ -17,6 +17,7 @@ router.post('/', async (req, res) => {
   }
 
   req.session.user = { username: user.username };
+  res.cookie("signedin", "true");
   res.redirect('/'); // Or wherever your dashboard is
 });
 
