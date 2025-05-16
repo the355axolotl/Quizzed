@@ -12,8 +12,7 @@ router.get('/', function(req, res, next) {
     }
     if(req.cookies.signedin == "true"){
         res.render('./home/index')
-    }
-    else{
+    } else {
         res.redirect('./signup');
     }
 });
