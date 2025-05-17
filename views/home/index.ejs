@@ -41,7 +41,7 @@
   </div>
 
   <div class="settings-frame pixelify-sans no-show" id="settings-frame-id">
-    <div class="settings-wrapper" style="font-size: 2em; gap: 50px">
+    <div class="settings-wrapper" style="font-size: 1.85em; gap: 50px;">
         <h2>Settings</h2>
         <div class="var-questions">
             <div class="var-questions-main">
@@ -70,6 +70,23 @@
                 </input>
             </div>
             <span class="press-start" style="font-size: .3em">(Min: <%=minTimer%>, Max: <%=maxTimer%>)</span>
+        </div>
+
+        <div class="var-difficulty">
+            <div class="var-difficulty-main">
+                <span style="flex: .75;">Difficulty:</span>
+                <div class="difficulty-options">
+                    <button id="difficulty-left" onclick="decrement(this)">◀</button>
+                    <input class="req-setting" 
+                            id="difficulty-text" 
+                            form="form-start"
+                            name="difficulty" 
+                            value="<%= difficulty %>" 
+                            readonly>
+                    </input>
+                    <button id="difficulty-right" onclick="increment(this)">▶</button>
+                </div>
+            </div>
         </div>
         <button class="pixelify-sans" id="settings-cancel">Return</button>
     </div>

@@ -69,6 +69,43 @@ let SETTINGS_FRAME = document.getElementById('settings-frame-id');
 let SETTINGS_BTN = document.getElementById('settings');
 let SETTINGS_CANCEL = document.getElementById('settings-cancel');
 
+//Choosing difficulty
+var difficulty = ["Easy", "Medium", "Hard"];
+
+var leftButton = document.getElementById('difficulty-left');
+var rightButton = document.getElementById('difficulty-right');
+var difficultyInput = document.getElementById('difficulty-text');
+var index = difficulty.indexOf(difficultyInput.value);
+
+function adjustButtons(i) {
+    difficultyInput.value = difficulty[index];
+    switch (difficultyInput.value) {
+        case "Easy":
+            leftButton.style.visibility = "hidden";
+            rightButton.style.visibility = "visible";
+            break;
+        case "Medium":
+            leftButton.style.visibility = "visible";
+            rightButton.style.visibility = "visible";
+            break;
+         case "Hard":
+            leftButton.style.visibility = "visible";
+            rightButton.style.visibility = "hidden";
+    }
+}
+
+function decrement(btn) {
+    if (difficulty[index-1] != null) {
+        adjustButtons(--index);
+    }
+}
+
+function increment(btn) {
+    if (difficulty[index+1] != null) {
+        adjustButtons(++index);
+    }
+}
+
 SETTINGS_BTN.addEventListener('click', function() {
     if (SETTINGS_FRAME.classList.contains('no-show')) {
         if (INSTRUCTION_FRAME.classList.contains('show')) {
@@ -86,6 +123,8 @@ SETTINGS_BTN.addEventListener('click', function() {
 
         SETTINGS_FRAME.classList.toggle('show');
         SETTINGS_FRAME.classList.toggle('no-show');
+
+        adjustButtons(index);
     }
 })
 
@@ -99,6 +138,8 @@ SETTINGS_CANCEL.addEventListener('click', function() {
 
         SETTINGS_FRAME.classList.toggle('show');
         SETTINGS_FRAME.classList.toggle('no-show');
+        leftButton.style.visibility = "hidden";
+        rightButton.style.visibility = "hidden";
     }
 })
 
