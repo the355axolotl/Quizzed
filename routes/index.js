@@ -22,6 +22,7 @@ router.get('/results', (req, res) => {
         score: req.session.score,
         totalQuestions: req.session.totalQuestions
     });
+    //user name and score and save it
 });
 
 router.get('/replay', (req,res) => {

@@ -18,6 +18,7 @@ router.post('/', async (req, res) => {
 
   req.session.user = { username: user.username };
   res.cookie("signedin", "true"); //should there be a signout button that makes this false?
+  res.cookie("username", user.username)
   res.redirect('/'); // Or wherever your dashboard is
 });
 
