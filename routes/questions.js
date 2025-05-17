@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
     req.session.score = req.session.score == null ? 0 : parseInt(req.session.score);
     req.session.totalQuestions = numOfQuestions;
     req.session.timer = req.session.timer == null ? req.body.timer : req.session.timer;
-    req.session.currentTime = req.session.currentTime == null ? req.body.timer : req.body.currentTime;
+    req.session.currentTime = req.session.currentTime == null ? req.body.timer : req.session.currentTime;
     req.session.difficulty = req.session.difficulty == null ? req.body.difficulty : req.session.difficulty;
     
     console.log(req.body.answer, req.session.currentQuestion - 1, req.session.questions);

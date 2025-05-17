@@ -5,7 +5,7 @@ var quizForm = document.getElementById('answer-form');
 var currentQuestions = document.getElementById("current-qs");
 var totalQuestions = document.getElementById("total-qs");
 
-const animationDelay = 1500; // in milliseconds
+const animationDelay = 1000; // in milliseconds
 
 endRound.disabled = false;
 endRound.addEventListener('click', function() {
