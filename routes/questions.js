@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
     // Any previous session that's on the homepage will now be resetted
     req.session.questions = null;
     req.session.currentQuestion = null;
+    req.session.currentTime = null;
     req.session.score = null;
   
     res.render('./home/index', { title: 'Quizzd' });
@@ -23,6 +24,7 @@ router.post('/', (req, res) => {
         req.session.currentQuestion = null;
         req.session.score = null;
         req.session.timer = null;
+        req.session.currentTime = null;
         req.session.difficulty = null;
         res.cookie("newSession", "false")
     }
@@ -33,6 +35,7 @@ router.post('/', (req, res) => {
     req.session.score = req.session.score == null ? 0 : parseInt(req.session.score);
     req.session.totalQuestions = numOfQuestions;
     req.session.timer = req.session.timer == null ? req.body.timer : req.session.timer;
+    req.session.currentTime = req.session.currentTime == null ? req.body.timer : req.body.currentTime;
     req.session.difficulty = req.session.difficulty == null ? req.body.difficulty : req.session.difficulty;
     
     console.log(req.body.answer, req.session.currentQuestion - 1, req.session.questions);
@@ -53,11 +56,12 @@ router.post('/', (req, res) => {
         res.render('./main/quiz', {
             title: "Quizzd: Start",
             question: question,
-            options: choices,
-            questionNumber: parseInt(req.session.currentQuestion) + 1,
             questions: numOfQuestions,
+            questionNumber: parseInt(req.session.currentQuestion) + 1,
+            options: choices,
             score: req.session.score,
             timer: req.session.timer,
+            currentTime: req.session.currentTime,
             difficulty: req.session.difficulty,
             answer: question["answer"]
         });

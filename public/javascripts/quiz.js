@@ -5,13 +5,33 @@ var quizForm = document.getElementById('answer-form');
 var currentQuestions = document.getElementById("current-qs");
 var totalQuestions = document.getElementById("total-qs");
 
-endRound.disabled = false;
-endRound.innerHTML = 'End Round';
+const animationDelay = 1500; // in milliseconds
 
+endRound.disabled = false;
 endRound.addEventListener('click', function() {
     currentQuestions.value = totalQuestions.value;
     quizForm.submit();
 })
+
+
+// Timer
+var timerText = document.getElementById("trademark-timer");
+var quizForm = document.getElementById('answer-form');
+
+var timer = document.getElementById("currentTime");
+
+var timerInterval = setInterval(function() {
+    if (timer.value <= 0) {
+        clearInterval(timerInterval);
+
+        currentQuestions.value = totalQuestions.value;
+        quizForm.submit();
+    } else {
+        timerText.innerHTML = "Timer: " + timer.value + " seconds";
+        timer.value--;
+    }
+}, animationDelay);
+
 
 
 // Delay answers to access DOM elements successfully
@@ -28,19 +48,21 @@ setTimeout(() => {
     submitButton.classList.toggle('show');
 
     function answerFeedback(event) {
+        timer.value = parseInt(timerText.innerHTML.match(/\d+/));
         const formData = new FormData(quizForm);
+        console.log(formData.get('currentTime'));
     
         event.preventDefault();
-    
+        
+        clearInterval(timerInterval);
+
         var correctAnswer = document.getElementById('ansk');
         var userAnswer = formData.get('answer');
 
         submitButton.classList.toggle('show');
         submitButton.classList.toggle('no-show');
     
-        for (const choice of options) {
-            console.log(choice);
-            
+        for (const choice of options) {       
             if (choice.id != correctAnswer.value && choice.id != userAnswer) {
                 choice.classList.toggle('show');
                 choice.classList.toggle('no-show');
@@ -57,4 +79,4 @@ setTimeout(() => {
     }
     
     quizForm.addEventListener('submit', answerFeedback);
-}, 1500);
+}, animationDelay);

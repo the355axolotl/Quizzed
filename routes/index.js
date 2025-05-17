@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
     var minTimer = 30;
     var maxTimer = 120;
     var difficulty = "Easy";
+    var currentTime;
 
     var totalQs = req.session.totalQuestions == null ? minQs : req.session.totalQuestions;
     var time = req.session.timer == null ? minTimer : req.session.timer;
@@ -23,16 +24,18 @@ router.get('/', function(req, res, next) {
         title: 'Quizzd',
         totalQuestions: totalQs,
         timer: time,
+        currentTime: time,
         minQuestions: minQs,
         maxQuestions: maxQs,
         minTimer: minTimer,
         maxTimer: maxTimer,
-        difficulty: difficulty
+        difficulty: difficulty,
     });
 });
 
 router.get('/results', (req, res) => {
     res.render('./main/results', {
+        title: 'Quizzd: Results',
         score: req.session.score,
         totalQuestions: req.session.totalQuestions,
         timer: req.session.timer,
