@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const { log } = require('console');
 const router = express.Router();
+const Leaderboard = require('../model/leaderboard');
 
 /* GET home page.... */
 router.get('/', function(req, res, next) {
@@ -40,7 +41,7 @@ router.post('/', (req, res) => {
     /* console.log(req.body["currentQuestion"], req.session.totalQuestions) */
     if (req.body["currentQuestion"] >= req.session.totalQuestions){
         res.cookie("newSession", "true")
-        res.redirect('/results');
+        return res.redirect('/results');
     }
 
     let question = req.session.questions[req.session.currentQuestion];
