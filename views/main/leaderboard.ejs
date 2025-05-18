@@ -21,16 +21,26 @@
                 <div class="leaderboard-div">
                     <% for(let i = 0; i < result.length; i++) { %>
                         <div class="post">
-                            <h2 class = "white-text font-big"><%= result[i].username %></h2>
-                            <p> <%= result[i].score %></p>
+                            <h2 class = "white-text pixelify-sans font-big"><%= result[i].username %> :        <%= result[i].score %></h2>
                             </div>
                     <%}%>
                 </div>
             </div>
         </div>
+
+        <div class="buttons">
+            <form method="get" action="/">
+                <button class = "btn pixelify-sans">Home</button>
+            </form>
+        </div>
     </div>
+    
+    
+  
 
-
+    <script>
+        document.getElementById('settings').classList.toggle("no-show");
+    </script>
 
 
     <%-include("../footer.ejs")%>
