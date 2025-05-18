@@ -4,7 +4,7 @@ const User = require('../model/users');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('signup/signin', { error: null });
+  res.render('signup/signin', {title: 'Quizzd', error: null });
 });
 
 router.post('/', async (req, res) => {
@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
   const user = await User.findOne({ username, password }); // You’ll hash & compare in future
 
   if (!user) {
-    return res.render('signup/signin', { error: 'Invalid username or password' });
+    return res.render('signup/signin', {title: 'Quizzd', error: 'Invalid username or password' });
   }
 
   req.session.user = { username: user.username };

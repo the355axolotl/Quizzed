@@ -4,19 +4,19 @@ const User = require('../model/users');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('signup/signup', { error: null });
+  res.render('signup/signup', {title: 'Quizzd',error: null });
 });
 
 router.post('/', async (req, res) => {
   const { username, password, confirmPassword } = req.body;
 
   if (password !== confirmPassword) {
-    return res.render('signup/signup', { error: 'Passwords do not match' });
+    return res.render('signup/signup', {title: 'Quizzd', error: 'Passwords do not match' });
   }
 
   const existingUser = await User.findOne({ username });
   if (existingUser) {
-    return res.render('signup/signup', { error: 'Username already taken' });
+    return res.render('signup/signup', {title: 'Quizzd', error: 'Username already taken' });
   }
 
   try {
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     res.redirect('/signin');
   } catch (err) {
     console.error(err);
-    res.render('signup/signup', { error: 'Error creating user' });
+    res.render('signup/signup', {title: 'Quizzd', error: 'Error creating user' });
   }
 });
 

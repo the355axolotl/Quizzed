@@ -44,7 +44,7 @@ router.get('/', async function(req, res, next) {
     if(req.cookies.signedin == "true"){
         res.render('./home/index')
     } else {
-        res.redirect('./signup');
+        return res.redirect('./signup');
     }
     res.render('./home/index', { 
         title: 'Quizzd',
