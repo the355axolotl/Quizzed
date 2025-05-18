@@ -42,6 +42,17 @@
 /* Have to make it visible again because using 2 style sheets */
 .btn {
     visibility: visible;
+
+    width: 100%;
+}
+
+.buttons {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
 }
 
 /* may have to adjust padding later */
