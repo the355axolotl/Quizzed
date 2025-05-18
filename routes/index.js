@@ -102,12 +102,14 @@ router.get('/play-history', async (req, res) => {
         const user = await User.findOne({ username: req.cookies.username }); // Performing a query to find the user in the DB
         const history = user.playHistory;
         console.log(history);
+        console.log(history[0].quizDate);
+        console.log(history[0].score);
         res.render('./main/play-history', {
-            history: history
+            userHistory: history
     });
     } catch (err) {
         console.error(err);
-        res.status(500).send('Error retrieving play history');
+        res.redirect('/'); // Redirect to the home page if there's an error
     }
 });
 
