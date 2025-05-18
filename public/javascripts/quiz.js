@@ -1,6 +1,8 @@
 // Change settings button to End Round
 document.getElementById('settings').id = 'end-round';
 var endRound = document.getElementById('end-round');
+endRound.innerHTML = "End Round";
+
 var quizForm = document.getElementById('answer-form');
 var currentQuestions = document.getElementById("current-qs");
 var totalQuestions = document.getElementById("total-qs");
