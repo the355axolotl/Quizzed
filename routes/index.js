@@ -161,4 +161,12 @@ router.get('/user-profile', async (req, res) => {
     });
 });
 
+router.get('/signout', (req,res) => {
+    res.cookie("newSession", "true");
+    res.cookie("signedin", "false");
+    res.clearCookie("username");
+
+    res.redirect('/signin')
+});
+
 module.exports = router;
