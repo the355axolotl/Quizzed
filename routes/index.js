@@ -141,22 +141,6 @@ router.get('/leaderboard', async (req, res) => {
 });
 
 router.get('/play-history', async (req, res) => {
-    // try {
-    //     const user = await User.findOne({ username: req.cookies.username }); // Performing a query to find the user in the DB
-    //     const history = user.playHistory.reverse(); // Reversing the array to get the play entries from recent to oldest
-    //     console.log(history);
-    //     console.log(history[0].quizDate);
-    //     console.log(history[0].score);
-    //     res.render('./main/play-history', {
-    //         userHistory: history
-    //     });
-    //     console.error(err);
-    // } catch (err) {
-    //     let array = [];
-    //     console.error(err);
-    //     res.redirect('/'); // Redirect to the home page if there's an error
-    // }
-
     const user = await User.findOne({ username: req.cookies.username }); // Performing a query to find the user in the DB
     const history = user.playHistory.reverse(); // Reversing the array to get the play entries from recent to oldest
     // console.log(history);
@@ -166,9 +150,15 @@ router.get('/play-history', async (req, res) => {
         userHistory: history,
         title: 'Quizzd'
     });    
+});
 
-
-
+router.get('/user-profile', async (req, res) => {
+    const user = await User.findOne({ username: req.cookies.username }); 
+    console.log(user); // test
+    res.render('./main/user-profile', {
+        user: user,
+        title: 'Quizzd'
+    });
 });
 
 module.exports = router;
