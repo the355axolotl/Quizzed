@@ -3,6 +3,7 @@ var router = express.Router();
 const questionModel = require('../model/questions');
 const Leaderboard = require('../model/leaderboard');
 const User = require('../model/users');
+const users = require('../model/users');
 
 
 
@@ -93,6 +94,20 @@ router.get('/leaderboard', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).send('Error retrieving leaderboard data');
+    }
+});
+
+router.get('/play-history', async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.cookies.username }); // Performing a query to find the user in the DB
+        const history = user.playHistory;
+        console.log(history);
+        res.render('./main/play-history', {
+            history: history
+    });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error retrieving play history');
     }
 });
 
