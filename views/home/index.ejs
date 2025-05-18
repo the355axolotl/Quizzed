@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
-    <title> Quizzd </title>
+    <title> <%= title %> </title>
     <link rel="icon" type="image/png" href="/public/images/icon.png">
   </head>
   <body>
@@ -25,6 +25,7 @@
       </div>
       <div class="no-show" id="home-buttons">
           <form id="form-start" method="post" action="/play">
+                <input id="currentTime" name="currentTime" value="<%= currentTime %>" hidden readonly>
               <button type="submit" class="btn pixelify-sans" id="play-start">Play Now</button>
           </form>
   
@@ -50,24 +51,53 @@
   </div>
 
   <div class="settings-frame pixelify-sans no-show" id="settings-frame-id">
-    <div class="settings-wrapper" style="font-size: 2em; gap: 100px">
+    <div class="settings-wrapper" style="font-size: 1.85em; gap: 50px;">
         <h2>Settings</h2>
         <div class="var-questions">
-            <span style="flex: .75;">Number of questions:</span>
-            <input id="req-num"
-                form="form-start"
-                name="questions" 
-                min="10"max="50" 
-                value="10" 
-                onblur="imposeMinMax(this)">
-            </input>
-        </div>
-        <!-- <div class="var-difficulty">
-            <span style="flex: .3;">Difficulty</span>
-            <div style="flex: .7; justify-content: center;">
-
+            <div class="var-questions-main">
+                <span style="flex: .75;">Number of questions:</span>
+                <input class="req-setting"
+                    id="user-questions"
+                    form="form-start"
+                    name="questions" 
+                    min="<%=minQuestions%>"max="<%=maxQuestions%>" 
+                    value= "<%= totalQuestions %>"
+                    onblur="imposeMinMax(this)">
+                </input>
             </div>
-        </div> -->
+            <span class="press-start" style="font-size: .3em">(Min: <%=minQuestions%>, Max: <%=maxQuestions%>)</span>
+        </div>
+        <div class="var-timer">
+            <div class="var-timer-main">
+                <span style="flex: .75;">Timer (seconds):</span>
+                <input class="req-setting"
+                        id="user-timer"
+                        form="form-start"
+                        name="timer"
+                        min="<%=minTimer%>" max="<%=maxTimer%>"
+                        value = "<%= timer %>"
+                        onblur="imposeMinMax(this)">
+                </input>
+            </div>
+            <span class="press-start" style="font-size: .3em">(Min: <%=minTimer%>, Max: <%=maxTimer%>)</span>
+        </div>
+
+        <div class="var-difficulty">
+            <div class="var-difficulty-main">
+                <span style="flex: .75;">Difficulty:</span>
+                <div class="difficulty-options">
+                    <button id="difficulty-left" onclick="decrement(this)">◀</button>
+                    <input class="req-setting" 
+                            id="difficulty-text" 
+                            form="form-start"
+                            name="difficulty" 
+                            value="<%= difficulty %>" 
+                            readonly>
+                    </input>
+                    <button id="difficulty-right" onclick="increment(this)">▶</button>
+                </div>
+            </div>
+        </div>
         <button class="pixelify-sans" id="settings-cancel">Return</button>
     </div>
 </div>

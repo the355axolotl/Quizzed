@@ -6,7 +6,7 @@
 }
 
 .press-start {
-  font-family: "Pixelify Sans", sans-serif;
+  font-family: "Press Start", sans-serif;
 }
 
 .pixelify-sans {
@@ -102,6 +102,13 @@ body, .background {
   background: #000 url(../images/stars3.png) repeat top center;
   transform: scale(1.2, 1.2);
   z-index: -4;
+}
+
+
+
+/* CUSTOM CHECKBOX */
+label input {
+  display: none; /* Hide the default checkbox */
 }
 
 
@@ -258,10 +265,12 @@ header > * {
 }
 
 .instructions-wrapper, .settings-wrapper {
-  width: 45%;
+  width: 55%;
   min-width: 325px;
-  height: 55%;
+  max-width: 650px;
+  height: 45%;
   min-height: 400px;
+  max-height: 700px;
 
   border: #FFF 8px solid;
   box-sizing: border-box;
@@ -274,6 +283,8 @@ header > * {
   align-items: center;
   flex-direction: column;
 }
+
+.settings-wrapper { width: 65%; height: 85%; gap: 10px }
 
 #instructions-cancel, #settings-cancel {
   width: 125px;
@@ -289,17 +300,29 @@ header > * {
 
 
 /* SETTINGS FRAME */
-.var-questions, .var-difficulty {
+.var-questions, .var-timer, .var-difficulty {
   width: 100%;
   height: 15%;
   min-height: 50px;
 
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+
+  gap: 5px;
 }
 
-#req-num {
+.var-questions-main, .var-timer-main, .var-difficulty-main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.req-setting {
   flex: .25;
 
   width: 100%;
@@ -330,3 +353,26 @@ header > * {
     font-size: .9em;
   }
 }
+#difficulty-left, #difficulty-right {
+  background: none;
+  border: none;
+  color: white;
+  
+  flex: .1;
+}
+
+#difficulty-left:hover, #difficulty-right:hover {
+  color: blue;
+}
+
+.difficulty-options {
+  display: flex;
+  justify-content: center;
+
+  flex: .25;
+  width: 100%;
+
+  font-size: .45em;
+}
+
+#difficulty-text { flex: .8;}
