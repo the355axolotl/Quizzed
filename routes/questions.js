@@ -70,8 +70,9 @@ router.post('/', async (req, res) => {
         res.cookie("newSession", "true")
         return res.redirect('/results');
     } else {
-        let getQuestion = req.session.questions[req.session.currentQuestion];
-        let choices = getOptionsForQuestion(question);
+        let getQuestion = req.session.questions.results[req.session.currentQuestion];
+        console.log(getQuestion);
+        let choices = getOptionsForQuestion(getQuestion);
 
         //This should make quotes actually quotes and apotrophies actually apohstrophies
         let fix = entities.decode(getQuestion.question);
@@ -90,7 +91,7 @@ router.post('/', async (req, res) => {
             timer: req.session.timer,
             currentTime: req.session.currentTime,
             difficulty: req.session.difficulty,
-            answer: question["answer"]
+            answer: getQuestion.correct_answer
         });
     }
 });
