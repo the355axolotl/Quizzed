@@ -42,21 +42,21 @@ router.get('/', async function(req, res, next) {
         res.cookie("session", response.data.token);
     }
     if(req.cookies.signedin == "true"){
-        res.render('./home/index')
+        res.render('./home/index', { 
+            title: 'Quizzd',
+            totalQuestions: totalQs,
+            timer: time,
+            currentTime: time,
+            minQuestions: minQs,
+            maxQuestions: maxQs,
+            minTimer: minTimer,
+            maxTimer: maxTimer,
+            difficulty: difficulty,
+        });
     } else {
         return res.redirect('./signup');
     }
-    res.render('./home/index', { 
-        title: 'Quizzd',
-        totalQuestions: totalQs,
-        timer: time,
-        currentTime: time,
-        minQuestions: minQs,
-        maxQuestions: maxQs,
-        minTimer: minTimer,
-        maxTimer: maxTimer,
-        difficulty: difficulty,
-    });
+
 });
 
 router.get('/results',  async (req, res) => {
