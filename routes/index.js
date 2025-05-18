@@ -17,7 +17,7 @@ router.get('/', async function(req, res, next) {
 
     var totalQs = req.session.totalQuestions == null ? minQs : req.session.totalQuestions;
     var time = req.session.timer == null ? minTimer : req.session.timer;
-    var difficulty = req.session.difficulty == null ? difficulty : req.session.difficulty;
+    req.session.difficulty = req.session.difficulty == null ? difficulty : req.session.difficulty;
 
     if (req.cookies.newSession == "false") {
         res.cookie("newSession", "false");
