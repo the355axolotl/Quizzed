@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/quiz.css' />
-    <title>Quizzd: Start</title>
+    <title> <%= title %></title>
   </head>
   <body>
     <%-include("../header.ejs")%>
@@ -20,31 +20,32 @@
 
         <div class="quiz-wrapper-bottom">
           <form id="answer-form" action="/play" method="POST">
-            <input name="cutsceneFinished" hidden readOnly>
-            <input name="questions" value="<%= questions %>" hidden readonly>
+            <input id="total-qs" name="questions" value="<%= questions %>" hidden readonly>
             <input name="score" value="<%= score %>" hidden readonly>
-            <input name="currentQuestion" value="<%= questionNumber %>" hidden readonly>
+            <input id="timer" name="timer" value="<%= timer %>" hidden readonly>
+            <input id="currentTime" name="currentTime" value="<%= currentTime %>" hidden readonly>
+            <input id="current-qs" name="currentQuestion" value="<%= questionNumber %>" hidden readonly>
+            
             <div class="options-frame">
               <% options.forEach(function(option) { %>
-                <div class="option">
-                  <input type="radio" id="<%= option.key %>" name="answer" value="<%= option.value %>" required>
+                <div class="option no-show" id="<%= option.key %>">
+                  <input id="<%= option.key %>"class="answerChoice" type="radio" name="answer" value="<%= option.value %>" required>
                   <div class="label-wrapper">
                     <label for="<%= option.key %>"><%= option.key %>: <%= option.value %></label>
                   </div>
                 </div>
               <% }); %>
+              <input id="ansk" name="ansk" value="<%= answer %>" hidden readonly>
             </div>
           </form>
 
-          <button form="answer-form" type="submit" class="btn pixelify-sans">Submit Answer</button>
+          <button form="answer-form" type="submit" id="submit-answer" class="btn pixelify-sans no-show">Submit Answer</button>
         </div>
 
       </div>
     </div>
 
     <%-include("../footer.ejs")%>
-    <script>
-      document.getElementById('settings').classList.toggle("no-show");
-    </script>
+    <script src="./javascripts/quiz.js" defer></script>
   </body>
 </html>

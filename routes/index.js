@@ -7,6 +7,18 @@ var axios = require("axios");
 const baseURL = "https://opentdb.com/api_token.php";
 
 router.get('/', async function(req, res, next) {
+    // Adjust min and max config here for default game settings
+    var minQs = 5;
+    var maxQs = 50;
+    var minTimer = 30;
+    var maxTimer = 120;
+    var difficulty = "Easy";
+    var currentTime;
+
+    var totalQs = req.session.totalQuestions == null ? minQs : req.session.totalQuestions;
+    var time = req.session.timer == null ? minTimer : req.session.timer;
+    var difficulty = req.session.difficulty == null ? difficulty : req.session.difficulty;
+
     if (req.cookies.newSession == "false") {
         res.cookie("newSession", "false");
     } else {
@@ -24,13 +36,26 @@ router.get('/', async function(req, res, next) {
         console.log(response.data.token)
         res.cookie("session", response.data.token);
     }
-    res.render('./home/index', { title : 'Quizzd'});
+    res.render('./home/index', { 
+        title: 'Quizzd',
+        totalQuestions: totalQs,
+        timer: time,
+        currentTime: time,
+        minQuestions: minQs,
+        maxQuestions: maxQs,
+        minTimer: minTimer,
+        maxTimer: maxTimer,
+        difficulty: difficulty,
+    });
 });
 
 router.get('/results', (req, res) => {
     res.render('./main/results', {
+        title: 'Quizzd: Results',
         score: req.session.score,
-        totalQuestions: req.session.totalQuestions
+        totalQuestions: req.session.totalQuestions,
+        timer: req.session.timer,
+        difficulty: req.session.difficulty
     });
 });
 

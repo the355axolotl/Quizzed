@@ -12,9 +12,10 @@ router.get('/', function(req, res, next) {
     // Any previous session that's on the homepage will now be resetted
     req.session.questions = null;
     req.session.currentQuestion = null;
+    req.session.currentTime = null;
     req.session.score = null;
   
-    res.render('./home/index', { title: 'Quiz App' });
+    res.render('./home/index', { title: 'Quizzd' });
   });
 
 
@@ -25,6 +26,9 @@ router.post('/', async (req, res) => {
         req.session.questions = null;
         req.session.currentQuestion = null;
         req.session.score = null;
+        req.session.timer = null;
+        req.session.currentTime = null;
+        req.session.difficulty = null;
         res.cookie("newSession", "false")
         apiData = getQuestions(req.cookies.session, numOfQuestions);
         //console.log((await apiData).data)
@@ -36,6 +40,10 @@ router.post('/', async (req, res) => {
     req.session.currentQuestion = !req.body["currentQuestion"] ? 0 : parseInt(req.body["currentQuestion"]);
     req.session.score = req.session.score == null ? 0 : parseInt(req.session.score);
     req.session.totalQuestions = numOfQuestions;
+    req.session.timer = req.session.timer == null ? req.body.timer : req.session.timer;
+    req.session.currentTime = req.session.currentTime == null ? req.body.timer : req.session.currentTime;
+    req.session.difficulty = req.session.difficulty == null ? req.body.difficulty : req.session.difficulty;    
+
     //The Omega Failsafe in case the server restarts
     //and the new cookie session didn't reset
     //You were a goober and stopped the server in the middle of the questions page 
@@ -56,29 +64,35 @@ router.post('/', async (req, res) => {
     }
     console.log(req.body.answer);
     console.log(req.session.score);
+
     /* console.log(req.body["currentQuestion"], req.session.totalQuestions) */
     if (req.session.currentQuestion >= req.session.totalQuestions){
         res.cookie("newSession", "true")
         return res.redirect('/results');
+    } else {
+        let getQuestion = req.session.questions[req.session.currentQuestion];
+        let choices = getOptionsForQuestion(question);
+
+        //This should make quotes actually quotes and apotrophies actually apohstrophies
+        let fix = entities.decode(getQuestion.question);
+        // fix = fix.replaceAll("&quot;", "\"");
+        // fix = fix.replaceAll("&#039;", "\'");
+        getQuestion.question = fix;
+        console.log(getQuestion.question);
+
+        res.render('./main/quiz', {
+            title: "Quizzd: Start",
+            question: getQuestion,
+            questions: numOfQuestions,
+            questionNumber: parseInt(req.session.currentQuestion) + 1,
+            options: choices,
+            score: req.session.score,
+            timer: req.session.timer,
+            currentTime: req.session.currentTime,
+            difficulty: req.session.difficulty,
+            answer: question["answer"]
+        });
     }
-
-    let getQuestion = req.session.questions.results[req.session.currentQuestion];
-    let choices = getOptionsForQuestion(getQuestion);
-
-    //This should make quotes actually quotes and apotrophies actually apohstrophies
-    let fix = entities.decode(getQuestion.question);
-    // fix = fix.replaceAll("&quot;", "\"");
-    // fix = fix.replaceAll("&#039;", "\'");
-    getQuestion.question = fix;
-    console.log(getQuestion.question);
-
-    res.render('./main/quiz', {
-        question: getQuestion,
-        options: choices,
-        questionNumber: parseInt(req.session.currentQuestion) + 1,
-        questions: numOfQuestions,
-        score: req.session.score
-    });
 });
 
 /* router.post('/next', (req, res) => {
