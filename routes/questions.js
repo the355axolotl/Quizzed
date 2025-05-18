@@ -22,6 +22,7 @@ router.get('/', function(req, res, next) {
 router.post('/', async (req, res) => {
     const numOfQuestions = parseInt(req.body["questions"]);
     let apiData = null;
+    let difficulty = null;
     if (req.cookies.newSession == "true"){
         req.session.questions = null;
         req.session.currentQuestion = null;
@@ -29,7 +30,7 @@ router.post('/', async (req, res) => {
         req.session.timer = null;
         req.session.currentTime = null;
         res.cookie("newSession", "false")
-        let difficulty = req.body.difficulty;
+        difficulty = req.body.difficulty;
         difficulty = difficulty.toLowerCase();
         console.log(difficulty);
         apiData = getQuestions(req.cookies.session, numOfQuestions, difficulty);
@@ -98,27 +99,6 @@ router.post('/', async (req, res) => {
         });
     }
 });
-
-/* router.post('/next', (req, res) => {
-    req.session.questions = getRandomQuestions();
-    const question = req.session.questions[0];
-    const choices = getOptionsForQuestion(question);
-
-    res.render('./quiz', {
-        question: question,
-        options: choices,
-        questionNumber: 2,
-        totalQuestions: req.session.totalQuestions
-    });
-});
-
- */
-/* POST answer submission */
-// router.post('/submit', function(req,res) {
-//     if (!req.session.questions || req.session.currentQuestion >= req.session.questions.length) {
-//       return res.redirect('/');
-//     }
-// });
 
 
 
