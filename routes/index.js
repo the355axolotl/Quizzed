@@ -80,4 +80,20 @@ router.get('/replay', (req,res) => {
     res.redirect('/');
 });
 
+router.get('/leaderboard', async (req, res) => {
+    try {
+        const result = await Leaderboard.find({}).sort({ score: -1 }).limit(10); 
+        const test = 10;
+        console.log(result);
+        console.log(test);
+        res.render('./main/leaderboard', { 
+            result: result,
+            test: test
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error retrieving leaderboard data');
+    }
+});
+
 module.exports = router;
