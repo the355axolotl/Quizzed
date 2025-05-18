@@ -1,8 +1,12 @@
 const express = require('express');
 var router = express.Router();
 const questionModel = require('../model/questions');
+var axios = require("axios");
 
-router.get('/', function(req, res, next) {
+//This is specifically for session tokens
+const baseURL = "https://opentdb.com/api_token.php";
+
+router.get('/', async function(req, res, next) {
     // Adjust min and max config here for default game settings
     var minQs = 5;
     var maxQs = 50;
@@ -19,6 +23,18 @@ router.get('/', function(req, res, next) {
         res.cookie("newSession", "false");
     } else {
         res.cookie("newSession", "true");
+        //Session Tokens, Asks the api for a session token
+        const response = await axios.get(
+            baseURL,
+            {
+                params: {
+                    command: "request"
+                }
+            }
+        );
+        console.log(response.data);
+        console.log(response.data.token)
+        res.cookie("session", response.data.token);
     }
     res.render('./home/index', { 
         title: 'Quizzd',
