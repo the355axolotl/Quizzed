@@ -58,7 +58,8 @@ setTimeout(() => {
 
         var correctAnswer = document.getElementById('ansk');
         var userAnswer = formData.get('answer');
-
+        // console.log(correctAnswer)
+        // console.log(userAnswer) //correct answer.value == useranswer
         submitButton.classList.toggle('show');
         submitButton.classList.toggle('no-show');
     
@@ -67,7 +68,7 @@ setTimeout(() => {
                 choice.classList.toggle('show');
                 choice.classList.toggle('no-show');
             }
-
+                //console.log(choice);
             if (choice.id == correctAnswer.value) {
                 choice.style.color = 'green';
             } else {

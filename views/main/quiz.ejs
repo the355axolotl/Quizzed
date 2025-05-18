@@ -28,10 +28,10 @@
             
             <div class="options-frame">
               <% options.forEach(function(option) { %>
-                <div class="option no-show" id="<%= option.key %>">
-                  <input id="<%= option.key %>"class="answerChoice" type="radio" name="answer" value="<%= option.value %>" required>
+                <div class="option no-show" id="<%= option.value %>">
+                  <input id="<%= option.value %>"class="answerChoice" type="radio" name="answer" value="<%= option.value %>" required>
                   <div class="label-wrapper">
-                    <label for="<%= option.key %>"><%= option.key %>: <%= option.value %></label>
+                    <label for="<%= option.value %>"><%= option.key %>: <%= option.value %></label>
                   </div>
                 </div>
               <% }); %>
