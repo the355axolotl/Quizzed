@@ -5,12 +5,12 @@
         </a>
     </div>
     <div class="header-right">
-        <button id="settings">Settings</button>
+        <button id="settings" hidden>Settings</button>
         <a href="https://github.com/the355axolotl/Quizzed/tree/main" target="_blank"> <button id="credits">Credits</button></a>
         <form id="user-profile-form" method = "GET" action="/user-profile">
             <button id="user-profile" type="submit"> Profile </button>
         </form>
-        <form method="get" action="/signout">
+        <form method="get" id="signout-form"  action="/signout">
             <button id = "sign-out">Sign Out</button>
         </form>
     </div>

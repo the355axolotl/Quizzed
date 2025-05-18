@@ -151,7 +151,7 @@ header > * {
   background-color: #0000ff;
 }
 
-#user-profile-form {
+#user-profile-form, #signout-form {
   width: inherit;
 
   display: flex;
@@ -339,20 +339,47 @@ header > * {
 
 /* MEDIA QUERY */
 
-@media (max-width: 628px) {
+@media (max-width: 436px) {
+  .header{ justify-content: center;}
   .header-left {
     display: none;
-    flex: 0;
   }
-
   .header-right {
     flex: 1;
     gap: 30px;
     justify-content: center;
 
-    font-size: .9em;
+    font-size: .65em;
   }
 }
+
+@media (max-width: 628px) {
+  .header{ justify-content: center;}
+  .header-left {
+    flex: .1;
+    display: none;
+
+    width: 0%;
+  }
+  .header-right {
+    flex: .9;
+    gap: 30px;
+    justify-content: center;
+    font-size: .8em;
+  }
+}
+
+@media (max-width: 730px) {
+  .header-left {
+    flex: .2;
+  }
+  .header-right {
+    flex: .8;
+    gap: 30px;
+  }
+}
+
+
 #difficulty-left, #difficulty-right {
   background: none;
   border: none;

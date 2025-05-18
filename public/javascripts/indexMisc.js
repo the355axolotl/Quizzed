@@ -77,6 +77,7 @@ var rightButton = document.getElementById('difficulty-right');
 var difficultyInput = document.getElementById('difficulty-text');
 var index = difficulty.indexOf(difficultyInput.value);
 
+SETTINGS_BTN.hidden = false;
 function adjustButtons(i) {
     difficultyInput.value = difficulty[index];
     switch (difficultyInput.value) {
