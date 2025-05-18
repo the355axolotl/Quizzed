@@ -18,12 +18,15 @@
                 <h1 class="pixelify-sans" style="font-size: 4em"> Your History </h1>
             </div>
             <div class = "boxbg">
-                <div class="play-history-div">
-                    <% for(let i = 0; i < userHistory.length; i++) { %>
+                <div class="play-history-div">    
+                    <% if (userHistory.length > 0) {
+                    for(let i = 0; i < userHistory.length; i++) { %>
                         <div class="white-text pixelify-sans">
                             <h2 class = "white-text pixelify-sans font-big"><%= userHistory[i].quizDate %> :  </h2>
                             <h3> Score: <%= userHistory[i].score %></h3>
                             </div>
+                    <%} } else { %>
+                            <h2 class = "white-text pixelify-sans font-big">No Quizzes played</h2>
                     <%}%>
                 </div>
             </div>

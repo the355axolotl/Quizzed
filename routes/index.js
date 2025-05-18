@@ -131,7 +131,8 @@ router.get('/leaderboard', async (req, res) => {
         console.log(test);
         res.render('./main/leaderboard', { 
             result: result,
-            test: test
+            test: test,
+            title: 'Quizzd'
         });
     } catch (err) {
         console.error(err);
@@ -140,19 +141,34 @@ router.get('/leaderboard', async (req, res) => {
 });
 
 router.get('/play-history', async (req, res) => {
-    try {
-        const user = await User.findOne({ username: req.cookies.username }); // Performing a query to find the user in the DB
-        const history = user.playHistory.reverse(); // Reversing the array to get the play entries from recent to oldest
-        console.log(history);
-        console.log(history[0].quizDate);
-        console.log(history[0].score);
-        res.render('./main/play-history', {
-            userHistory: history
-    });
-    } catch (err) {
-        console.error(err);
-        res.redirect('/'); // Redirect to the home page if there's an error
-    }
+    // try {
+    //     const user = await User.findOne({ username: req.cookies.username }); // Performing a query to find the user in the DB
+    //     const history = user.playHistory.reverse(); // Reversing the array to get the play entries from recent to oldest
+    //     console.log(history);
+    //     console.log(history[0].quizDate);
+    //     console.log(history[0].score);
+    //     res.render('./main/play-history', {
+    //         userHistory: history
+    //     });
+    //     console.error(err);
+    // } catch (err) {
+    //     let array = [];
+    //     console.error(err);
+    //     res.redirect('/'); // Redirect to the home page if there's an error
+    // }
+
+    const user = await User.findOne({ username: req.cookies.username }); // Performing a query to find the user in the DB
+    const history = user.playHistory.reverse(); // Reversing the array to get the play entries from recent to oldest
+    // console.log(history);
+    // console.log(history[0].quizDate);
+    // console.log(history[0].score);
+    res.render('./main/play-history', {
+        userHistory: history,
+        title: 'Quizzd'
+    });    
+
+
+
 });
 
 module.exports = router;
