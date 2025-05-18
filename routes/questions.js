@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', async (req, res) => {
     const numOfQuestions = parseInt(req.body["questions"]);
-    let apiData = null
+    let apiData = null;
     if (req.cookies.newSession == "true"){
         req.session.questions = null;
         req.session.currentQuestion = null;
@@ -29,7 +29,10 @@ router.post('/', async (req, res) => {
         req.session.timer = null;
         req.session.currentTime = null;
         res.cookie("newSession", "false")
-        apiData = getQuestions(req.cookies.session, numOfQuestions, (req.session.difficulty).toLowerCase());
+        let difficulty = req.body.difficulty;
+        difficulty = difficulty.toLowerCase();
+        console.log(difficulty);
+        apiData = getQuestions(req.cookies.session, numOfQuestions, difficulty);
         //console.log((await apiData).data)
     }
 
@@ -51,6 +54,7 @@ router.post('/', async (req, res) => {
         apiData = getQuestions(null, numOfQuestions);
         req.session.questions = (await apiData)?.data;
     }
+
 
     //console.log(req.body.answer, req.session.currentQuestion - 1);
     try {
