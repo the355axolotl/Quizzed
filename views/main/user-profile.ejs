@@ -24,9 +24,13 @@
                     <h2  style = "font-size: 1.2em" class = "white-text press-start"> Date Joined: <%= user.accountDate.getMonth() + 1;%>/<%= user.accountDate.getDate();%>/<%= user.accountDate.getFullYear();%> </h2><br><br>
                 </div>
             </div>
+
         </div>
 
         <div class="buttons">
+            <form id="form-start" method="get" action="/play-history">
+                <button type="submit" class="btn pixelify-sans" id="play-start"> Play History </button>
+            </form>
             <form method="get" action="/">
                 <button class = "btn pixelify-sans">Return</button>
             </form>
