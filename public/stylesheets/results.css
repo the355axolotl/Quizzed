@@ -33,14 +33,26 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    max-height: 300px;
     border: solid;
-    padding: 8vh;
+    padding: 9vh;
     border-color: rgb(255, 255, 255) ;
 }
 
 /* Have to make it visible again because using 2 style sheets */
 .btn {
     visibility: visible;
+
+    width: 100%;
+}
+
+.buttons {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
 }
 
 /* may have to adjust padding later */
@@ -52,4 +64,6 @@
 
     padding-top: 7px;
     padding-bottom: 7px;
+
+    gap: 20px;
 }

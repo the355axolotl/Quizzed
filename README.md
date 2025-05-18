@@ -24,3 +24,4 @@ quiz application built with Node.js, Express, and EJS.
 1. Alan Huang - Backend Logic
 2. Allen Dolina - Design, HTML, CSS, and Backend Logic
 3. Shaine Lomenario - Backend Logic
+4. Ike Meisels- Backend Logic

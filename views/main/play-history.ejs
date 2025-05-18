@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel = 'stylesheet' href="/stylesheets/results.css">
+    <title>Quizzd</title>
+    <link rel="icon" type="image/png" href="/public/images/icon.png">
+</head>
+<body>
+    <%-include("../header.ejs")%>
+    <%-include("../background.ejs")%>
+
+    <div class = "results-frame">
+        <div class = "box"> 
+            <div class="white-text font-big">
+                <h1 class="pixelify-sans" style="font-size: 4em"> Your History </h1>
+            </div>
+            <div class = "boxbg">
+                <div style = "overflow-y:scroll; font-size: 0.7em" class="play-history-div press-start">    
+                    <% if (userHistory.length > 0) {
+                    for(let i = 0; i < userHistory.length; i++) { %>
+                        <div class="white-text">
+                            <h2 class = "white-text">• <%= userHistory[i].quizDate %>   </h2> <br>
+                            <span style = "background:blue; font-size: 1.5em"> [Score]: <%= userHistory[i].score %></span>
+                            <br><br><br> <hr><br><br><br>
+                        </div>
+                    <%} } else { %>
+                            <h2 class = "white-text pixelify-sans font-big">No Quizzes played</h2>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <form method="get" action="/">
+                <button class = "btn pixelify-sans"> Back Home</button>
+            </form>
+        </div>
+    </div>
+    
+    
+  
+
+    <script>
+        document.getElementById('settings').classList.toggle("no-show");
+    </script>
+
+
+    <%-include("../footer.ejs")%>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel = 'stylesheet' href="/stylesheets/results.css">
+    <title>Quizzd</title>
+    <link rel="icon" type="image/png" href="/public/images/icon.png">
+</head>
+<body>
+    <%-include("../header.ejs")%>
+    <%-include("../background.ejs")%>
+
+    <div class = "results-frame">
+        <div class = "box"> 
+            <div class="white-text font-big">
+                <h1 class="pixelify-sans" style="font-size: 4em"> Your Profile </h1>
+            </div>
+            <div class = "boxbg">
+                <div class="user-profile-div">
+                    <h2  style = "font-size: 1.2em" class = "white-text press-start"> Username: <%= user.username %> </h2><br>
+                    <h2  style = "font-size: 1.2em" class = "white-text press-start"> Total Quizzes: <%= user.playHistory.length %> </h2><br>
+                    <h2  style = "font-size: 1.2em" class = "white-text press-start"> Date Joined: <%= user.accountDate.getMonth() + 1;%>/<%= user.accountDate.getDate();%>/<%= user.accountDate.getFullYear();%> </h2><br><br>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="buttons">
+            <form id="form-start" method="get" action="/play-history">
+                <button type="submit" class="btn pixelify-sans" id="play-start"> Play History </button>
+            </form>
+            <form method="get" action="/">
+                <button class = "btn pixelify-sans">Return</button>
+            </form>
+        </div>
+    </div>
+    
+    
+  
+
+    <script>
+        document.getElementById('settings').classList.toggle("no-show");
+    </script>
+
+
+    <%-include("../footer.ejs")%>
+</body>
+</html>

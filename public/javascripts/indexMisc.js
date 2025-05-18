@@ -29,8 +29,8 @@ let INSTRUCTION_FRAME = document.getElementById('instruction-frame-id');
 // Prevent spamming when button animation on home page is underway
 setTimeout(() => { 
     HOME_BTNS.classList.toggle('show'); 
-    HOME_BTNS.classList.toggle('no-show') }, 
-1000);
+    HOME_BTNS.classList.toggle('no-show');
+    document.getElementById('settings').disabled = false; }, 1050);
 
 
 
@@ -65,14 +65,47 @@ RETURN_BTN.addEventListener('click', function(){
 
 
 
-
-// DEFAULT SETTINGS
-const NUM_QUESTIONS = 10;
-let TIMER = 30; //seconds
-
 let SETTINGS_FRAME = document.getElementById('settings-frame-id');
 let SETTINGS_BTN = document.getElementById('settings');
 let SETTINGS_CANCEL = document.getElementById('settings-cancel');
+
+//Choosing difficulty
+var difficulty = ["Easy", "Medium", "Hard"];
+
+var leftButton = document.getElementById('difficulty-left');
+var rightButton = document.getElementById('difficulty-right');
+var difficultyInput = document.getElementById('difficulty-text');
+var index = difficulty.indexOf(difficultyInput.value);
+
+SETTINGS_BTN.hidden = false;
+function adjustButtons(i) {
+    difficultyInput.value = difficulty[index];
+    switch (difficultyInput.value) {
+        case "Easy":
+            leftButton.style.visibility = "hidden";
+            rightButton.style.visibility = "visible";
+            break;
+        case "Medium":
+            leftButton.style.visibility = "visible";
+            rightButton.style.visibility = "visible";
+            break;
+         case "Hard":
+            leftButton.style.visibility = "visible";
+            rightButton.style.visibility = "hidden";
+    }
+}
+
+function decrement(btn) {
+    if (difficulty[index-1] != null) {
+        adjustButtons(--index);
+    }
+}
+
+function increment(btn) {
+    if (difficulty[index+1] != null) {
+        adjustButtons(++index);
+    }
+}
 
 SETTINGS_BTN.addEventListener('click', function() {
     if (SETTINGS_FRAME.classList.contains('no-show')) {
@@ -91,6 +124,8 @@ SETTINGS_BTN.addEventListener('click', function() {
 
         SETTINGS_FRAME.classList.toggle('show');
         SETTINGS_FRAME.classList.toggle('no-show');
+
+        adjustButtons(index);
     }
 })
 
@@ -104,13 +139,15 @@ SETTINGS_CANCEL.addEventListener('click', function() {
 
         SETTINGS_FRAME.classList.toggle('show');
         SETTINGS_FRAME.classList.toggle('no-show');
+        leftButton.style.visibility = "hidden";
+        rightButton.style.visibility = "hidden";
     }
 })
 
 // For adjusting user request of #q's if beyond min/max (check index.ejs)
 function imposeMinMax(num){
     if (isNaN(num.value) || num.value == "") {
-        num.value = NUM_QUESTIONS;
+        num.value = num.min;
     } else {
         if(num.value != ""){
             if(parseInt(num.value) < parseInt(num.min)){
@@ -119,13 +156,17 @@ function imposeMinMax(num){
             if(parseInt(num.value) > parseInt(num.max)){
               num.value = num.max;
             }
-          }
+        }
     }
-  }
+}
 
-  //Prevent input from being entered
-  document.getElementById("req-num").addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-    }
-})
+// Prevent input from being entered
+var SETTINGS_ELEMENTS = document.getElementsByClassName("req-setting");
+
+for (var i = 0; i < SETTINGS_ELEMENTS.length; i++) {
+    SETTINGS_ELEMENTS[i].addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+        }
+    })
+}
