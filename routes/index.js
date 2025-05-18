@@ -154,7 +154,6 @@ router.get('/play-history', async (req, res) => {
 
 router.get('/user-profile', async (req, res) => {
     const user = await User.findOne({ username: req.cookies.username }); 
-    console.log(user); // test
     res.render('./main/user-profile', {
         user: user,
         title: 'Quizzd'

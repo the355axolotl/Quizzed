@@ -19,7 +19,9 @@
             </div>
             <div class = "boxbg">
                 <div class="user-profile-div">
-                    <h2 class = "white-text press-start"> <%= user %> </h2>
+                    <h2  style = "font-size: 1.2em" class = "white-text press-start"> Username: <%= user.username %> </h2><br>
+                    <h2  style = "font-size: 1.2em" class = "white-text press-start"> Total Quizzes: <%= user.playHistory.length %> </h2><br>
+                    <h2  style = "font-size: 1.2em" class = "white-text press-start"> Date Joined: <%= user.accountDate.getMonth() + 1;%>/<%= user.accountDate.getDate();%>/<%= user.accountDate.getFullYear();%> </h2><br><br>
                 </div>
             </div>
         </div>
