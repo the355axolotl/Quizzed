@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const { log } = require('console');
 const router = express.Router();
+const Leaderboard = require('../model/leaderboard');
 var axios = require("axios");
 const baseURL = "https://opentdb.com/api.php";
 const entities = require("html-entities");

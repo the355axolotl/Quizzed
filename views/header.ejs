@@ -5,11 +5,11 @@
         </a>
     </div>
     <div class="header-right">
-        <button id="settings" disabled><%= title == "Quizzd: Start" ? "End Round" : "Settings"%></button>
-
-        <a href="https://github.com/the355axolotl/Quizzed/tree/main" target="_blank"> 
-            <button id="credits">Credits</button>
-        </a>
+        <button id="settings">Settings</button>
+        <a href="https://github.com/the355axolotl/Quizzed/tree/main" target="_blank"> <button id="credits">Credits</button></a>
+        <form id="user-profile-form" method = "GET" action="/play-history">
+            <button id="user-profile" type="submit"> User Profile </button>
+        </form>
     </div>
 </header>
 

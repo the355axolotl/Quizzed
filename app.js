@@ -3,11 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var db = require('./db'); 
+require("dotenv").config();
 
 var indexRouter = require('./routes/index');
 var questionsRouter = require('./routes/questions');
+var signupRouter = require('./routes/signup');
+var signinRouter = require('./routes/signin');
 
 var session = require('express-session');
+const { sign } = require('crypto');
 var app = express();
 
 // view engine setup
@@ -28,8 +33,10 @@ app.use(session({
 }))
 
 // Routes
+app.use('/signup',signupRouter);
 app.use('/play', questionsRouter);
 app.use('/', indexRouter);
+app.use('/signin',signinRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
