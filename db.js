@@ -5,7 +5,7 @@ require("dotenv").config();
 const MONGO_URI = process.env.DB_URI;
 
 mongoose.connect(MONGO_URI, {
-  
+  dbName: 'quizzed'
   
 })
 .then(() => console.log(' MongoDB Atlas connected'))
