@@ -138,7 +138,7 @@ header > * {
 .header-left { justify-content: flex-start; flex: .5;}
 .header-right { justify-content: flex-end; gap: 30px; flex: 1;}
 
-#credits, #settings, #user-profile, #end-round {
+#credits, #settings, #user-profile, #end-round, #sign-out{
   background-color: transparent;
   border: transparent;
 
@@ -147,7 +147,7 @@ header > * {
   color: rgb(255, 255, 255);
 }
 
-#credits:hover, #settings:hover, #user-profile:hover, #end-round:hover {
+#credits:hover, #settings:hover, #user-profile:hover, #end-round:hover, #sign-out:hover {
   background-color: #0000ff;
 }
 
