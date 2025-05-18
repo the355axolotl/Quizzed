@@ -15,8 +15,9 @@ router.get('/', function(req, res, next) {
     req.session.currentQuestion = null;
     req.session.currentTime = null;
     req.session.score = null;
-  
-    res.render('./home/index', { title: 'Quizzd' });
+    res.cookie("newSession", "true")
+    //Any goobers that try to access using /play in the browser URL will be redirected to the home page
+    return res.redirect('/');
   });
 
 
