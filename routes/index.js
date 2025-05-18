@@ -158,6 +158,9 @@ router.get('/leaderboard', async (req, res) => {
 });
 
 router.get('/play-history', async (req, res) => {
+    if(req.cookies.signedin != 'true'){
+        return res.redirect('/');
+    }
     const user = await User.findOne({ username: req.cookies.username }); // Performing a query to find the user in the DB
     const history = user.playHistory.reverse(); // Reversing the array to get the play entries from recent to oldest
     // console.log(history);
@@ -170,6 +173,9 @@ router.get('/play-history', async (req, res) => {
 });
 
 router.get('/user-profile', async (req, res) => {
+    if(req.cookies.signedin != 'true'){
+        return res.redirect('/');
+    }
     const user = await User.findOne({ username: req.cookies.username }); 
     res.render('./main/user-profile', {
         user: user,
