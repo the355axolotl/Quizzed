@@ -8,6 +8,20 @@ const users = require('../model/users');
 
 var axios = require("axios");
 
+function convertedDay(input) {
+    const map = new Map();
+    map.set(0, 'Sunday');
+    map.set(1, 'Monday');
+    map.set(2, 'Tuesday');
+    map.set(3, 'Wednesday');
+    map.set(4, 'Thursday');
+    map.set(5, 'Friday');
+    map.set(6, 'Saturday');
+
+    return map.get(input);
+}
+
+
 //This is specifically for session tokens
 const baseURL = "https://opentdb.com/api_token.php";
 
@@ -79,12 +93,18 @@ router.get('/results',  async (req, res) => {
         try {
             const score = req.session.score;
             const username = req.cookies.username;
+            let date = new Date();
+            let dateOfTheWeek = convertedDay(date.getDay());
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            let year = date.getFullYear();
 
+            let convertedDate = `${dateOfTheWeek} ${month}/${day}/${year} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 
 
             // Each element in the playHistory array stores a JSON object with the date, score
             const gameEntry = {
-                quizDate: new Date(), // Current date and time
+                quizDate: convertedDate, // Displays the date w/o the timezone
                 score: score
             };
 
@@ -163,9 +183,7 @@ router.get('/play-history', async (req, res) => {
     }
     const user = await User.findOne({ username: req.cookies.username }); // Performing a query to find the user in the DB
     const history = user.playHistory.reverse(); // Reversing the array to get the play entries from recent to oldest
-    // console.log(history);
-    // console.log(history[0].quizDate);
-    // console.log(history[0].score);
+
     res.render('./main/play-history', {
         userHistory: history,
         title: 'Quizzd'
@@ -190,5 +208,10 @@ router.get('/signout', (req,res) => {
 
     res.redirect('/signin')
 });
+
+
+
+
+
 
 module.exports = router;
